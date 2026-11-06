@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Citra Bangun Mandiri">
+  <defs>
+    <linearGradient id="cb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5b21b6" />
+      <stop offset="100%" stop-color="#3b1580" />
+    </linearGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="26" fill="url(#cb)" />
+
+  <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 96h64M40 96V52l24-14 24 14v44" />
+  </g>
+
+  <g fill="none" stroke="#a3e635" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M92 84c0-16-11-26-26-26 0 15 11 26 26 26z" />
+    <path d="M92 84c0-10 6-17 14-19" />
+  </g>
+</svg>
