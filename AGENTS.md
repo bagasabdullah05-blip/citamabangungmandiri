@@ -16,6 +16,7 @@ Jangan jalankan `check` + `build` + `deploy` setiap kali mengedit file. Itu mema
 - Saat mengedit: cukup lihat hasilnya di dev server (`http://localhost:4321`).
 - `npm run check`: sekali di akhir rangkaian edit, bukan per file.
 - `npm run deploy`: hanya saat pengguna meminta publikasi atau fitur selesai.
+- `npm run deploy:gh`: publikasi ke GitHub Pages (build + push branch `gh-pages`).
 - `npm run verify`: check + build sekaligus untuk verifikasi akhir.
 
 Perintah `npm run` di project ini memakai binary lokal, lebih cepat daripada `npx`.
