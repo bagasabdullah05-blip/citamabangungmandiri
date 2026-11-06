@@ -7,11 +7,12 @@ const repo = process.env.GH_REPO ?? 'citamabangungmandiri';
 const work = path.resolve('.gh-pages');
 const dist = path.resolve('dist');
 
-const run = (args) => {
+const run = (args, env = process.env) => {
   const result = spawnSync('git', args, {
     cwd: work,
     stdio: 'inherit',
     shell: process.platform === 'win32',
+    env,
   });
   if (result.status !== 0) process.exit(result.status ?? 1);
 };
@@ -23,16 +24,13 @@ await writeFile(path.join(work, '.nojekyll'), '');
 
 run(['init', '-q', '-b', 'gh-pages']);
 run(['add', '-A']);
-run([
-  '-c',
-  'user.name=Bagas Abdullah',
-  '-c',
-  'user.email=bagasabdullah69@gmail.com',
-  'commit',
-  '-q',
-  '-m',
-  'Deploy situs',
-]);
+run(['commit', '-q', '-m', 'Deploy'], {
+  ...process.env,
+  GIT_AUTHOR_NAME: 'Bagas Abdullah',
+  GIT_AUTHOR_EMAIL: 'bagasabdullah69@gmail.com',
+  GIT_COMMITTER_NAME: 'Bagas Abdullah',
+  GIT_COMMITTER_EMAIL: 'bagasabdullah69@gmail.com',
+});
 run(['remote', 'add', 'origin', `https://github.com/${owner}/${repo}.git`]);
 run(['push', '-f', 'origin', 'gh-pages']);
 
