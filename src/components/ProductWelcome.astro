@@ -1,0 +1,263 @@
+---
+import Icon from './Icon.astro';
+
+/*
+ * ProductWelcome: layar sambutan produk untuk kunjungan pertama.
+ * Hanya tampil sekali per browser (localStorage). Tanpa JS,
+ * overlay tidak pernah muncul sehingga halaman tetap normal.
+ */
+---
+
+<div class="welcome" data-welcome hidden>
+  <div
+    class="welcome__card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="welcome-title"
+  >
+    <span class="welcome__mark pop" style="--i: 0">
+      <Icon name="leaf" size={30} />
+    </span>
+    <p class="welcome__eyebrow pop" style="--i: 1">
+      Selamat Datang di Etalase CBM
+    </p>
+    <h2 id="welcome-title" class="pop" style="--i: 2">
+      Dua Produk Unggulan Siap Dilihat
+    </h2>
+    <p class="welcome__desc pop" style="--i: 3">
+      Geser layar untuk menjelajahi tiap produk satu per satu, lengkap dengan
+      bahan utama dan minimum order.
+    </p>
+    <ul role="list" class="welcome__chips pop" style="--i: 4">
+      <li>
+        <Icon name="flask" size={14} />
+        Kapsul Ikan Gabus Citachana
+      </li>
+      <li>
+        <Icon name="package" size={14} />
+        Sari Kurma Ajwa
+      </li>
+    </ul>
+    <div class="welcome__actions pop" style="--i: 5">
+      <a href="#etalase" class="btn btn--light" data-welcome-go>
+        Lihat Etalase
+        <Icon name="arrow" size={18} />
+      </a>
+      <button type="button" class="btn btn--ghost" data-welcome-skip>
+        Lewati
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var KEY = 'cbm-welcome-seen';
+    var overlay = document.querySelector('[data-welcome]');
+    if (!(overlay instanceof HTMLElement)) return;
+
+    var skipBtn = overlay.querySelector('[data-welcome-skip]');
+    var goBtn = overlay.querySelector('[data-welcome-go]');
+    if (!(skipBtn instanceof HTMLElement) || !(goBtn instanceof HTMLElement)) {
+      return;
+    }
+    const box = overlay;
+
+    var canStore = true;
+    try {
+      if (window.localStorage.getItem(KEY)) return;
+    } catch (err) {
+      canStore = false;
+    }
+
+    var reduceMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function dismiss() {
+      box.classList.remove('is-open');
+      document.body.style.overflow = '';
+      window.setTimeout(function () {
+        box.setAttribute('hidden', '');
+      }, 350);
+      if (canStore) {
+        try {
+          window.localStorage.setItem(KEY, '1');
+        } catch (err) {
+          /* abaikan */
+        }
+      }
+    }
+
+    function open() {
+      box.removeAttribute('hidden');
+      window.requestAnimationFrame(function () {
+        box.classList.add('is-open');
+      });
+      document.body.style.overflow = 'hidden';
+    }
+
+    skipBtn.addEventListener('click', dismiss);
+    goBtn.addEventListener('click', dismiss);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !box.hasAttribute('hidden')) {
+        dismiss();
+      }
+    });
+
+    window.setTimeout(open, reduceMotion ? 100 : 700);
+  })();
+</script>
+
+<style>
+  .welcome {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    background: rgb(15 10 40 / 0.72);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 350ms ease;
+  }
+
+  .welcome[hidden] {
+    display: none;
+  }
+
+  .welcome.is-open {
+    opacity: 1;
+  }
+
+  .welcome__card {
+    width: min(34rem, 100%);
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3rem);
+    border-radius: 1.5rem;
+    color: #fff;
+    background:
+      radial-gradient(30rem 16rem at 85% 0%, rgb(139 92 246 / 0.5), transparent 60%),
+      radial-gradient(30rem 16rem at 10% 100%, rgb(132 204 22 / 0.35), transparent 60%),
+      linear-gradient(135deg, #3b1580 0%, #5b21b6 55%, #3f6212 100%);
+    border: 1px solid rgb(255 255 255 / 0.25);
+    box-shadow: 0 32px 80px rgb(2 6 23 / 0.5);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .welcome.is-open .welcome__card {
+    transform: none;
+  }
+
+  .welcome__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1.25rem;
+    background: rgb(255 255 255 / 0.16);
+    border: 1px solid rgb(255 255 255 / 0.3);
+    color: #bef264;
+  }
+
+  .welcome__eyebrow {
+    margin-top: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  .welcome__card h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .welcome__desc {
+    color: rgb(255 255 255 / 0.85);
+    max-width: 40ch;
+    margin: 0 auto;
+  }
+
+  .welcome__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+  }
+
+  .welcome__chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.12);
+    border: 1px solid rgb(255 255 255 / 0.25);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .welcome__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .btn--light {
+    background: #fff;
+    color: var(--brand-dark);
+    border: 1px solid #fff;
+  }
+
+  .btn--light:hover {
+    background: rgb(255 255 255 / 0.88);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgb(255 255 255 / 0.5);
+  }
+
+  .btn--ghost:hover {
+    background: rgb(255 255 255 / 0.12);
+    border-color: #fff;
+  }
+
+  .pop {
+    opacity: 0;
+    translate: 0 16px;
+    transition:
+      opacity 500ms ease,
+      translate 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(150ms + var(--i, 0) * 90ms);
+  }
+
+  .welcome.is-open .pop {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .welcome,
+    .welcome__card,
+    .pop {
+      transition: none;
+    }
+
+    .welcome__card,
+    .pop {
+      opacity: 1;
+      translate: none;
+      transform: none;
+    }
+  }
+</style>

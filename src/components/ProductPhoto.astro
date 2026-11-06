@@ -1,0 +1,69 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  name: string;
+  photo?: string;
+  compact?: boolean;
+}
+
+const { name, photo, compact = false } = Astro.props;
+---
+
+<div class:list={['pphoto', compact && 'pphoto--compact']}>
+  {
+    photo ? (
+      <img src={photo} alt={name} loading="lazy" />
+    ) : (
+      <div class="pphoto__empty">
+        <Icon name="package" size={compact ? 26 : 34} />
+        <span>Foto menyusul</span>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .pphoto {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-soft);
+  }
+
+  .pphoto--compact {
+    aspect-ratio: 3 / 2;
+    margin-bottom: 0.25rem;
+  }
+
+  .pphoto img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pphoto__empty {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 0.375rem;
+    height: 100%;
+    color: var(--ink-4);
+    background:
+      radial-gradient(20rem 10rem at 50% 0%, var(--brand-50), transparent 70%),
+      repeating-linear-gradient(
+        45deg,
+        transparent 0 10px,
+        rgb(0 0 0 / 0.02) 10px 20px
+      );
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius);
+  }
+
+  .pphoto__empty span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+</style>

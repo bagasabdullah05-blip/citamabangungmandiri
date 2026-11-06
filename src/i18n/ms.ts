@@ -1,0 +1,283 @@
+// Bahasa Melayu (Malaysia): hanya entri yang berbeza daripada
+// Bahasa Indonesia. Selebihnya kekal (fallback) dalam Bahasa Indonesia.
+export const ms: Record<string, string> = {
+  'Layanan Konstruksi': 'Perkhidmatan Pembinaan',
+  Sertifikasi: 'Pensijilan',
+  'Layanan Maklon': 'Perkhidmatan Maklon',
+  'Profil Perusahaan': 'Profil Syarikat',
+  'Maklon Herbal': 'Maklon Herba',
+  Portofolio: 'Portfolio',
+  'Proses Produksi': 'Proses Pengeluaran',
+  'Gratis Perizinan': 'Pelesenan Percuma',
+  'Senin-Sabtu, 08.00-17.00 WIB': 'Isnin-Sabtu, 08.00-17.00 WIB',
+  '© 2026 PT. Citra Bangun Mandiri. Seluruh hak dilindungi.':
+    '© 2026 PT. Citra Bangun Mandiri. Hak cipta terpelihara.',
+  'BPOM, GMP, Halal, dan izin produksi lainnya.':
+    'BPOM, GMP, Halal, dan lesen pengeluaran lain.',
+  'Citra Bangun Mandiri - Beranda': 'Citra Bangun Mandiri - Laman Utama',
+  'Dua bidang usaha: konstruksi bangunan dan manufaktur herbal. Melayani klien di seluruh Indonesia dengan standar mutu yang kami jaga di setiap proyek.':
+    'Dua bidang usaha: pembinaan bangunan dan pengilangan herba. Berkhidmat untuk klien di seluruh Indonesia dengan standard mutu yang dijaga dalam setiap projek.',
+  'Gratis izin BPOM, HAKI, dan laboratorium di atas 1.000 pcs.':
+    'Pelesenan BPOM, HAKI, dan makmal percuma untuk pesanan melebihi 1,000 pcs.',
+  'Katalog produk herbal yang kami produksi.':
+    'Katalog produk herba yang kami keluarkan.',
+  'Kontraktor, renovasi, dan pengelolaan proyek.':
+    'Kontraktor, ubah suai, dan pengurusan projek.',
+  'Layanan OEM, ODM, dan white label herbal.':
+    'Perkhidmatan OEM, ODM, dan label putih herba.',
+  'Lompat ke konten utama': 'Langkau ke kandungan utama',
+  'Mitra Build yang Terpercaya': 'Rakan Kongsi yang Dipercayai',
+  'Kami memproduksi produk herbal dan mengerjakan bangunan untuk brand di seluruh Indonesia, dengan standar mutu yang sama di kedua bidang usaha.':
+    'Kami mengeluarkan produk herba dan membina bangunan untuk jenama di seluruh Indonesia, dengan standard mutu yang sama dalam kedua-dua bidang usaha.',
+  'Baik Anda membutuhkan partner produksi herbal maupun mitra kontraktor, kami siap menjadi satu pintu untuk keduanya.':
+    'Sama ada anda memerlukan rakan pengeluaran herba mahupun rakan kongsi kontraktor, kami bersedia menjadi satu pintu untuk kedua-duanya.',
+  'Perusahaan herbal yang juga mengerjakan konstruksi bangunan, dengan penekanan pada mutu, ketepatan waktu, dan transparansi biaya.':
+    'Syarikat herba yang turut mengendalikan pembinaan bangunan, dengan penekanan pada mutu, ketepatan masa, dan ketelusan kos.',
+  'Dua bidang usaha: manufaktur herbal dan konstruksi bangunan. Melayani klien di seluruh Indonesia dengan standar mutu yang kami jaga di setiap produk.':
+    'Dua bidang usaha: pengilangan herba dan pembinaan bangunan. Berkhidmat untuk klien di seluruh Indonesia dengan standard mutu yang dijaga dalam setiap produk.',
+  'Proyek yang pernah kami kerjakan.': 'Projek yang pernah kami siapkan.',
+  'Sebagian data pada website ini masih berupa contoh dan akan diperbarui.':
+    'Sebahagian data di laman web ini masih contoh dan akan dikemas kini.',
+  'Tahapan dari formulasi hingga pengiriman.':
+    'Peringkat dari formulasi hingga penghantaran.',
+  'Format kemasan': 'Format pembungkusan',
+  '1.000 unit': '1,000 unit',
+  Gratis: 'Percuma',
+  'Izin BPOM': 'Lesen BPOM',
+  'Lihat Portofolio': 'Lihat Portfolio',
+  Selesai: 'Siap',
+  '3-7 hari kerja': '3-7 hari bekerja',
+  'Kementerian Pekerjaan Umum': 'Kementerian Kerja Raya',
+  'Renovasi dan Perbaikan': 'Ubah suai dan Pembaikan',
+  'Sertifikat Halal': 'Sijil Halal',
+  'Sesuai permintaan': 'Mengikut permintaan',
+  '1.000 renceng': '1,000 renceng',
+  'Ajukan Konsultasi': 'Mohon Konsultasi',
+  'Balasan rata-rata di hari kerja yang sama. Tanpa biaya dan tanpa ikatan.':
+    'Balasan purata pada hari bekerja yang sama. Percuma dan tanpa ikatan.',
+  'Bangun baru dan renovasi': 'Binaan baharu dan ubah suai',
+  'Brand Maklon': 'Jenama Maklon',
+  'Cairan 250 ml / 350 ml': 'Cecair 250 ml / 350 ml',
+  'Estimasi RAB dan biaya transparan': 'Anggaran RAB dan kos telus',
+  'Formula Anda, produksi kami': 'Formula anda, pengeluaran kami',
+  Hunian: 'Kediaman',
+  'Ide produk dari kami': 'Idea produk daripada kami',
+  'Identitas Perusahaan': 'Identiti Syarikat',
+  'Izin P-IRT': 'Lesen P-IRT',
+  'Izin Usaha Konstruksi': 'Lesen Perniagaan Pembinaan',
+  'Jamu kunyit asam dengan kunyit pilihan dan asam jawa, direbus dengan metode tradisional tanpa pemanis buatan berlebih.':
+    'Jamu kunyit asam dengan kunyit terpilih dan asam jawa, direbus cara tradisional tanpa pemanis tiruan berlebihan.',
+  Kemasan: 'Bungkusan',
+  'Kemasan sesuai desain Anda': 'Bungkusan mengikut rekaan anda',
+  'Konstruksi Bangunan': 'Pembinaan Bangunan',
+  'Konsultasi Gratis via WhatsApp': 'Konsultasi Percuma via WhatsApp',
+  'Konsultasi komposisi dan klaim': 'Konsultasi komposisi dan tuntutan',
+  'Kontraktor umum (general contractor)': 'Kontraktor am (general contractor)',
+  'Layanan Maklon Herbal': 'Perkhidmatan Maklon Herba',
+  Legalitas: 'Kesahan',
+  'Lihat Proses Produksi': 'Lihat Proses Pengeluaran',
+  'Manajemen konstruksi lengkap dengan pengawas lapangan dan pelaporan berkala.':
+    'Pengurusan pembinaan lengkap dengan penyelia tapak dan pelaporan berkala.',
+  'Mulai Konsultasi': 'Mula Konsultasi',
+  'NPWP Perusahaan': 'NPWP Syarikat',
+  'Pelaporan progres mingguan': 'Pelaporan kemajuan mingguan',
+  'Pembangunan rumah tinggal, ruko, dan gedung dari fondasi hingga finishing.':
+    'Pembinaan rumah kediaman, rumah kedai, dan bangunan dari asas hingga kemasan.',
+  'Pengadaan material terkoordinasi': 'Perolehan bahan terselaras',
+  'Pengecatan dan finishing': 'Pengecatan dan kemasan',
+  'Pengelolaan Proyek': 'Pengurusan Projek',
+  'Pengemasan Custom': 'Bungkusan Tersuai',
+  'Perbaikan atap dan struktur': 'Pembaikan bumbung dan struktur',
+  'Perbaikan ringan maupun berat untuk rumah, ruko, dan properti komersial.':
+    'Pembaikan ringan mahupun berat untuk rumah, rumah kedai, dan hartanah komersial.',
+  'Perbaikan sesuai permintaan pemilik': 'Pembaikan mengikut permintaan pemilik',
+  'Peremajaan interior dan eksterior': 'Pembaharuan dalaman dan luaran',
+  'Pertanyaan Umum': 'Soalan Lazim',
+  'Produk dengan merek Anda sendiri': 'Produk dengan jenama anda sendiri',
+  'Rencana anggaran biaya (RAB)': 'Rancangan anggaran kos (RAB)',
+  Renovasi: 'Ubah suai',
+  'Serbuk jahe merah instan tanpa pengawet buatan, diproses dengan suhu rendah agar kandungan Gingerol tetap terjaga.':
+    'Serbuk halia merah segera tanpa pengawet tiruan, diproses suhu rendah agar kandungan gingerol terpelihara.',
+  'Sertifikat Badan Usaha (SBU)': 'Sijil Badan Usaha (SBU)',
+  'Sesuai proyek': 'Mengikut projek',
+  'Struktur beton bertulang dan baja': 'Struktur konkrit bertetulang dan keluli',
+  'Tanya Kebutuhan Saya': 'Tanya Keperluan Saya',
+  'Time management dan penjadwalan': 'Pengurusan masa dan penjadualan',
+  'Minimum order': 'Pesanan minimum',
+  '2-5 hari kerja': '2-5 hari bekerja',
+  'Ajukan Penawaran': 'Mohon Tawaran',
+  'Apotek Terjangkau': 'Rangkaian Farmasi',
+  'Jahe merah, Gula aren, Sagu weren': 'Halia merah, gula aren, sagu',
+  'Kantor Pelayanan Pajak': 'Pejabat Perkhidmatan Cukai',
+  'Konsultasi dan Analisis Kebutuhan': 'Konsultasi dan Analisis Keperluan',
+  'Kualitas Terlebih Dahulu': 'Kualiti Diutamakan',
+  'Kunyit, Asam jawa, Gula aren': 'Kunyit, asam jawa, gula aren',
+  'Lihat Program Gratis Perizinan': 'Lihat Program Pelesenan Percuma',
+  'Nomor Induk Berusaha (NIB)': 'Nombor Induk Berusaha (NIB)',
+  'Produksi dan Pengawasan Mutu': 'Pengeluaran dan Kawalan Mutu',
+  'Proyek yang Pernah Kami Kerjakan': 'Projek yang Pernah Kami Siapkan',
+  'Tanya Produk Ini': 'Tanya Produk Ini',
+  'Tepat Waktu': 'Tepat Pada Masanya',
+  Transparan: 'Telus',
+  'Amankan Slot Produksi': 'Tempah Slot Pengeluaran',
+  'Apakah 1.000 pcs itu per varian atau total?':
+    'Adakah 1,000 pcs itu per varian atau jumlah keseluruhan?',
+  'Apakah bisa dikerjakan bertahap?': 'Adakah boleh disiapkan berperingkat?',
+  'Apakah bisa kirim ke luar Sulawesi?': 'Adakah boleh dihantar ke luar Sulawesi?',
+  'Apakah bisa produksi dengan merek dan kemasan sendiri?':
+    'Adakah boleh mengeluar dengan jenama dan bungkusan sendiri?',
+  'Apakah material bisa dibeli sendiri?': 'Adakah bahan boleh dibeli sendiri?',
+  'Apakah saya harus menyediakan formulasi sendiri?':
+    'Adakah saya perlu menyediakan formulasi sendiri?',
+  'Bangun baru, 1.200 m2': 'Binaan baharu, 1,200 m2',
+  'Bangun baru, 24 unit': 'Binaan baharu, 24 unit',
+  'Belum Yakin Layanan Mana yang Cocok?':
+    'Belum Pasti Perkhidmatan Mana yang Sesuai?',
+  'Berapa minimum order untuk layanan maklon?':
+    'Berapakah pesanan minimum untuk perkhidmatan maklon?',
+  'Bersama tim R&D kami': 'Bersama pasukan R&D kami',
+  'Betulkah gratis, tidak ada biaya tersembunyi?':
+    'Betulkah percuma, tiada kos tersembunyi?',
+  'Biaya perizinan': 'Kos pelesenan',
+  'Biaya Produksi': 'Kos Pengeluaran',
+  'Brand Milik Kami': 'Jenama Milik Kami',
+  'Butuh Salinan Dokumen?': 'Perlu Salinan Dokumen?',
+  'Cakupan Kerja Lengkap': 'Skop Kerja Lengkap',
+  'Cakupan Pekerjaan': 'Skop Kerja',
+  'Cek Eligibility Sekarang': 'Semak Kelayakan Sekarang',
+  'Etalase Produk': 'Etalase Produk',
+  'Gratis Perizinan untuk Order di Atas 1.000 Pcs':
+    'Pelesenan Percuma untuk Pesanan Melebihi 1,000 Pcs',
+  'Harga Transparan': 'Harga Telus',
+  'Kantor Pusat': 'Ibu Pejabat',
+  'Kapsul Herbal': 'Kapsul Herba',
+  'Konsultasi Gratis': 'Konsultasi Percuma',
+  'Konsultasi Gratis Sekarang': 'Konsultasi Percuma Sekarang',
+  'Kualitas Terjaga': 'Kualiti Terjamin',
+  'Layanan Herbal': 'Perkhidmatan Herba',
+  'Legalitas Perusahaan': 'Kesahan Syarikat',
+  Lewati: 'Langkau',
+  'Maklon untuk Klien': 'Maklon untuk Klien',
+  'Mana yang Cocok untuk Anda?': 'Mana yang Sesuai untuk Anda?',
+  'Mau Berdiskusi Kebutuhan Anda?': 'Mahu Bincangkan Keperluan Anda?',
+  'Mau Produksi dengan Perizinan Gratis?': 'Mahu Mengeluar dengan Pelesenan Percuma?',
+  'Minimum order tergantung jenis produk. Untuk jamu dan serbuk standar mulai dari 500 unit per varian. Untuk format custom dengan kemasan khusus, mulai dari 1.000 unit. Kami bisa membantu menyusun skema pembelian bertahap agar beban modal tidak besar di awal.':
+    'Pesanan minimum bergantung jenis produk. Untuk jamu dan serbuk standard bermula dari 500 unit per varian. Untuk format tersuai dengan bungkusan khas, bermula dari 1,000 unit. Kami boleh membantu menyusun skim pembelian berperingkat agar beban modal tidak besar pada awalnya.',
+  'Minyak Esensial': 'Minyak Pati',
+  'Mulai dari Konsultasi Singkat': 'Bermula dengan Konsultasi Ringkas',
+  'Order Di Atas 1.000 Pcs, Perizinan Kami Yang Bayar':
+    'Pesanan Melebihi 1,000 Pcs, Pelesenan Kami Yang Bayar',
+  'Pabrik Pengolahan Herbal': 'Kilang Pemprosesan Herba',
+  'Produksikan Brand Herbal Anda Bersama Kami':
+    'Keluarkan Jenama Herba Anda Bersama Kami',
+  'Program Perizinan Gratis': 'Program Pelesenan Percuma',
+  'Punya Kebutuhan Produk Herbal?': 'Ada Keperluan Produk Herba?',
+  'Punya Rencana Proyek?': 'Ada Rancangan Projek?',
+  'QC Setiap Batch': 'QC Setiap Kelompok',
+  'Semua Proyek': 'Semua Projek',
+  'Serah Terima': 'Serah Terima',
+  'Siap Memulai Produksi Brand Anda?': 'Bersedia Mulakan Pengeluaran Jenama Anda?',
+  'Siap Memulai Proyek?': 'Bersedia Mulakan Projek?',
+  'Simulasi Order 1.200 Pcs': 'Simulasi Pesanan 1,200 Pcs',
+  'Teh Herbal': 'Teh Herba',
+  Telepon: 'Telefon',
+  'Tidak Menemukan Format yang Cocok?': 'Tidak Menemui Format yang Sesuai?',
+  'Uji laboratorium': 'Ujian makmal',
+  'Uji Laboratorium': 'Ujian Makmal',
+  'Uji laboratorium gratis': 'Ujian makmal percuma',
+  'Minimum Order': 'Pesanan Minimum',
+  Layanan: 'Perkhidmatan',
+  'Konstruksi yang Kokoh, Produk Herbal yang Terpercaya':
+    'Pembinaan yang Kukuh, Produk Herba yang Dipercayai',
+  'Kami mengerjakan bangunan dan memproduksi produk herbal untuk brand di seluruh Indonesia, dengan standar mutu yang sama di kedua bidang usaha.':
+    'Kami membina bangunan dan mengeluarkan produk herba untuk jenama di seluruh Indonesia, dengan standard mutu yang sama dalam kedua-dua bidang usaha.',
+  'Tentang Perusahaan': 'Tentang Syarikat',
+  'Renovasi dan pengelolaan proyek': 'Ubah suai dan pengurusan projek',
+  'Layanan produksi produk herbal untuk brand sendiri dengan standar mutu terjaga.':
+    'Perkhidmatan pengeluaran produk herba untuk jenama sendiri dengan standard mutu terjaga.',
+  'Produk jamu, serbuk, teh, dan lotion': 'Produk jamu, serbuk, teh, dan losyen',
+  'OEM, ODM, dan white label': 'OEM, ODM, dan label putih',
+  'Formulasi dengan riset aplikasi bahan':
+    'Formulasi dengan penyelidikan aplikasi bahan',
+  'Pengemasan sesuai desain klien': 'Pembungkusan mengikut rekaan klien',
+  'Manufaktur Herbal (Maklon)': 'Pengilangan Herba (Maklon)',
+  'Satu Mitra, Dua Keahlian': 'Satu Rakan, Dua Kepakaran',
+  'Baik Anda membutuhkan mitra kontraktor maupun partner produksi herbal, kami siap menjadi satu pintu untuk keduanya.':
+    'Sama ada anda memerlukan rakan kongsi kontraktor mahupun rakan pengeluaran herba, kami bersedia menjadi satu pintu untuk kedua-duanya.',
+  'Sejarah, legalitas, layanan konstruksi, dan portofolio proyek yang pernah kami kerjakan.':
+    'Sejarah, kesahan, perkhidmatan pembinaan, dan portfolio projek yang pernah kami siapkan.',
+  'Pelajari Profil': 'Kenali Profil',
+  'Layanan manufaktur produk herbal untuk brand Anda: formulasi, produksi, pengemasan, dan izin edar.':
+    'Perkhidmatan pengilangan produk herba untuk jenama anda: formulasi, pengeluaran, pembungkusan, dan lesen edar.',
+  'Lihat Layanan': 'Lihat Perkhidmatan',
+  'Sampaikan kebutuhan proyek atau produk herbal Anda. Tim kami akan menghubungi Anda dengan estimasi dan langkah selanjutnya.':
+    'Sampaikan keperluan projek atau produk herba anda. Pasukan kami akan menghubungi anda dengan anggaran dan langkah seterusnya.',
+  'Konstruksi bangunan dan manufaktur herbal.':
+    'Pembinaan bangunan dan pengilangan herba.',
+  'Melayani proyek konstruksi dan manufaktur sejak 2015.':
+    'Berkhidmat untuk projek pembinaan dan pengilangan sejak 2015.',
+  'Produk kami dipasarkan melalui lebih dari seribu apotek.':
+    'Produk kami dipasarkan melalui lebih daripada seribu farmasi.',
+  'Brand yang mempercayakan produksinya kepada kami.':
+    'Jenama yang mempercayakan pengeluarannya kepada kami.',
+  'Rincian layanan pada kedua bidang usaha kami.':
+    'Perincian perkhidmatan dalam kedua-dua bidang usaha kami.',
+  'Apa yang Bisa Kami Kerjakan': 'Apa yang Boleh Kami Bina',
+  'Cara Kerja Kami': 'Cara Kami Bekerja',
+  'Empat hal yang tidak kami kompromikan, karena itu menentukan hasil akhir pekerjaan.':
+    'Empat perkara yang tidak kami kompromi, kerana ia menentukan hasil akhir kerja.',
+  'Setiap material dan proses kami awasi agar hasil sesuai standar dan tahan lama.':
+    'Setiap bahan dan proses kami awasi agar hasil menepati standard dan tahan lama.',
+  'Katalog Produk Kami': 'Katalog Produk Kami',
+  'Produk herbal yang kami produksi untuk brand sendiri dan klien maklon, lengkap dengan status izin edarnya.':
+    'Produk herba yang kami keluarkan untuk jenama sendiri dan klien maklon, lengkap dengan status lesen edar.',
+  'Produk berizin edar': 'Produk berlesen',
+  'Brand milik kami': 'Jenama milik kami',
+  'Maklon untuk klien': 'Jenama klien',
+  'Jenis izin edar': 'Jenis lesen edar',
+  'Produk Kami': 'Produk Kami',
+  'Brand milik kami dan produk maklon untuk klien.':
+    'Jenama milik kami dan produk maklon untuk klien.',
+  'Sejarah, legalitas, dan layanan konstruksi yang kami kerjakan.':
+    'Sejarah, kesahan, dan perkhidmatan pembinaan kami.',
+  'Dua Produk Unggulan Kami': 'Dua Produk Unggulan Kami',
+  'Geser ke bawah untuk melihat tiap produk beserta status izin edarnya.':
+    'Skrol ke bawah untuk melihat setiap produk beserta status lesen edarnya.',
+  'Jadwal proyek disusun realistis dan kami pantau progresnya secara rutin ke klien.':
+    'Jadual projek disusun realistik dan kami pantau kemajuannya secara rutin untuk klien.',
+  'Tim terlatih di bidangnya, mulai dari konstruksi hingga formulasi herbal.':
+    'Pasukan terlatih dalam bidangnya, bermula dari pembinaan hingga formulasi herba.',
+  'Rincian biaya dan perubahan pekerjaan selalu dikomunikasikan tanpa disembunyikan.':
+    'Perincian kos dan perubahan kerja sentiasa dimaklumkan tanpa disembunyikan.',
+  'Meluncurkan program gratis perizinan untuk order di atas 1.000 pcs.':
+    'Melancarkan program pelesenan percuma untuk pesanan melebihi 1,000 pcs.',
+  'Perusahaan Herbal dan Mitra Maklon': 'Syarikat Herba dan Rakan Maklon',
+  'Perusahaan herbal yang memproduksi produk berkualitas dan menyediakan jasa maklon untuk brand di seluruh Indonesia.':
+    'Syarikat herba yang mengeluarkan produk berkualiti dan menyediakan perkhidmatan maklon untuk jenama di seluruh Indonesia.',
+  'Izin Usaha Industri': 'Lesen Perniagaan Industri',
+  'Nomor izin usaha industri dan masa berlakunya.':
+    'Nombor lesen industri dan tempoh sah laku.',
+  'Sertifikat Merek HAKI': 'Sijil Jenama HAKI',
+  'Nomor pendaftaran merek bila sudah dimiliki.':
+    'Nombor pendaftaran jenama jika telah dimiliki.',
+  'Foto hero perusahaan': 'Foto hero syarikat',
+  'Gambar utama perusahaan, lebar minimal 1600px.':
+    'Gambar utama syarikat, lebar minimum 1600px.',
+  'Foto tiap layanan maklon': 'Foto setiap perkhidmatan maklon',
+  'Foto tiap produk portofolio': 'Foto setiap produk portfolio',
+  'Satu foto per produk, format lanskap.':
+    'Satu foto setiap produk, format landskap.',
+  'Jumlah produk berizin edar': 'Jumlah produk berlesen edar',
+  'Kapasitas produksi bulanan': 'Kapasiti pengeluaran bulanan',
+  'Dalam unit per bulan.': 'Dalam unit sebulan.',
+  'Format JPG atau PDF untuk halaman sertifikasi.':
+    'Format JPG atau PDF untuk halaman pensijilan.',
+  'Program Gratis Perizinan': 'Program Pelesenan Percuma',
+  'Produk Berizin BPOM': 'Produk Berlesen BPOM',
+  'Formula Anda, produksi kami.': 'Formula anda, pengeluaran kami.',
+  'Ide produk dari kami.': 'Idea produk daripada kami.',
+  'Kemasan sesuai desain Anda.': 'Bungkusan mengikut rekaan anda.',
+  'Produk dengan merek Anda sendiri.': 'Produk dengan jenama anda sendiri.',
+  'Produk kami dipasarkan melalui lebih dari seribu apotek, dan lebih dari 20 brand mempercayakan produksinya kepada kami.':
+    'Produk kami dipasarkan melalui lebih daripada seribu farmasi, dan lebih daripada 20 jenama mempercayakan pengeluaran kepada kami.',
+};

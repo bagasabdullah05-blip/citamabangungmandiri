@@ -1,0 +1,342 @@
+---
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Kontak"
+  description="Hubungi PT. Citra Bangun Mandiri untuk kebutuhan maklon produk herbal. Tersedia WhatsApp, telepon, email, dan formulir permintaan."
+>
+  <section class="contact-hero">
+    <div class="container">
+      <p class="eyebrow eyebrow--light">Kontak</p>
+      <h1>Mari Mulai Percakapan</h1>
+      <p class="lead lead--light">
+        Ada rencana launching produk herbal? Sampaikan detailnya
+        dan tim kami akan menghubungi Anda pada jam kerja.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--3">
+        <a class="channel" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">
+          <span class="channel__icon"><Icon name="whatsapp" size={22} /></span>
+          <h2>WhatsApp</h2>
+          <p class="channel__value">{site.phone}</p>
+          <p class="channel__note">Respons tercepat untuk konsultasi awal.</p>
+        </a>
+
+        <a class="channel" href={`tel:${site.phone.replace(/\s/g, '')}`}>
+          <span class="channel__icon"><Icon name="phone" size={22} /></span>
+          <h2>Telepon</h2>
+          <p class="channel__value">{site.phone}</p>
+          <p class="channel__note">{site.hours}</p>
+        </a>
+
+        <a class="channel" href={`mailto:${site.email}`}>
+          <span class="channel__icon"><Icon name="mail" size={22} /></span>
+          <h2>Email</h2>
+          <p class="channel__value">{site.email}</p>
+          <p class="channel__note">Untuk dokumen dan penawaran resmi.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="split">
+        <div>
+          <SectionHead
+            eyebrow="Kirim Pesan"
+            title="Formulir Permintaan"
+            description="Isi data berikut agar tim kami bisa menyiapkan jawaban yang tepat. Kolom bertanda bintang wajib diisi."
+          />
+
+          <form class="form" data-contact-form novalidate>
+            <div class="field">
+              <label for="nama">Nama lengkap *</label>
+              <input id="nama" name="nama" type="text" autocomplete="name" required />
+            </div>
+
+            <div class="field">
+              <label for="kontak">Nomor WhatsApp atau email *</label>
+              <input id="kontak" name="kontak" type="text" autocomplete="email" required />
+              <p class="field__hint">Kami akan membalas pada kontak ini.</p>
+            </div>
+
+            <div class="field">
+              <label for="layanan">Kebutuhan</label>
+              <select id="layanan" name="layanan">
+                <option value="maklon">Maklon produk herbal</option>
+                <option value="perizinan">Konsultasi Perizinan</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="pesan">Detail kebutuhan *</label>
+              <textarea id="pesan" name="pesan" rows="5" required></textarea>
+              <p class="field__hint">Sebutkan produk yang ingin diproduksi, target pasar, dan perkiraan jumlah.</p>
+            </div>
+
+            <button class="btn btn--primary btn--block" type="submit">Kirim via WhatsApp</button>
+            <p class="form__note small" data-form-note>
+              Data Anda hanya digunakan untuk menjawab permintaan ini. Formulir ini
+              membuka WhatsApp dengan pesan yang sudah terisi.
+            </p>
+          </form>
+        </div>
+
+        <aside class="panel">
+          <h2 class="panel__title">Alamat Kantor</h2>
+
+          <div class="panel__block">
+            <span class="panel__icon"><Icon name="building" size={20} /></span>
+            <div>
+              <h3>Kantor Pusat</h3>
+              <p>{site.address}</p>
+            </div>
+          </div>
+
+          <div class="panel__block">
+            <span class="panel__icon"><Icon name="flask" size={20} /></span>
+            <div>
+              <h3>Unit Produksi Herbal</h3>
+              <p>{site.addressHerbal}</p>
+            </div>
+          </div>
+
+          <div class="panel__block">
+            <span class="panel__icon"><Icon name="clock" size={20} /></span>
+            <div>
+              <h3>Jam Kerja</h3>
+              <p>{site.hours}</p>
+            </div>
+          </div>
+
+          <div class="panel__block">
+            <span class="panel__icon"><Icon name="mail" size={20} /></span>
+            <div>
+              <h3>Email Herbal</h3>
+              <p><a href={`mailto:${site.emailHerbal}`}>{site.emailHerbal}</a></p>
+            </div>
+          </div>
+
+          <div class="panel__social">
+            {site.social.instagram && (
+              <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram">
+                <Icon name="instagram" size={20} />
+              </a>
+            )}
+            {site.social.linkedin && (
+              <a href={site.social.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
+                <Icon name="linkedin" size={20} />
+              </a>
+            )}
+            {site.social.facebook && (
+              <a href={site.social.facebook} target="_blank" rel="noopener" aria-label="Facebook">
+                <Icon name="facebook" size={20} />
+              </a>
+            )}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 55%, var(--accent) 100%);
+    color: #fff;
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .contact-hero h1 {
+    color: #fff;
+    margin-top: 0.75rem;
+  }
+
+  .lead--light {
+    margin-top: 1rem;
+    max-width: 60ch;
+    color: rgb(255 255 255 / 0.9);
+  }
+
+  .eyebrow--light {
+    color: #fff;
+  }
+
+  .eyebrow--light::before {
+    background: #fff;
+  }
+
+  .channel {
+    display: block;
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition),
+      transform var(--transition);
+  }
+
+  .channel:hover {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .channel__icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius);
+    background: var(--brand-50);
+    color: var(--brand);
+    margin-bottom: 1rem;
+  }
+
+  .channel h2 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .channel__value {
+    font-weight: 600;
+    color: var(--brand);
+    margin-bottom: 0.5rem;
+  }
+
+  .channel__note {
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+
+  .split {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 62rem) {
+    .split {
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  .form {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .form__note {
+    color: var(--ink-4);
+    text-align: center;
+  }
+
+  .panel {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .panel__title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .panel__block {
+    display: flex;
+    gap: 0.875rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .panel__icon {
+    flex-shrink: 0;
+    color: var(--brand);
+    margin-top: 0.15rem;
+  }
+
+  .panel__block h3 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .panel__block p {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .panel__block a {
+    color: var(--brand);
+  }
+
+  .panel__social {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .panel__social a {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+    color: var(--ink-2);
+    transition:
+      background var(--transition),
+      color var(--transition);
+  }
+
+  .panel__social a:hover {
+    background: var(--brand);
+    color: #fff;
+  }
+</style>
+
+<script define:vars={{ whatsapp: site.whatsapp }}>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  const note = document.querySelector<HTMLElement>('[data-form-note]');
+
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const label = String(data.get('layanan') ?? 'lainnya');
+      const text = [
+        'Halo PT. Citra Bangun Mandiri,',
+        '',
+        `Nama: ${String(data.get('nama') ?? '')}`,
+        `Kontak: ${String(data.get('kontak') ?? '')}`,
+        `Kebutuhan: ${label}`,
+        '',
+        String(data.get('pesan') ?? ''),
+      ].join('\n');
+
+      window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+
+      if (note) {
+        note.textContent =
+          'Jendela WhatsApp terbuka dengan pesan yang sudah terisi. Tekan kirim di WhatsApp untuk melanjutkan.';
+      }
+    });
+  }
+</script>

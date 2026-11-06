@@ -1,0 +1,24 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  level?: 'h1' | 'h2';
+}
+
+const { eyebrow, title, description, align = 'left', level = 'h2' } = Astro.props;
+const Heading = level;
+---
+
+<div class:list={['section-head', { 'section-head--center': align === 'center' }]} data-reveal>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Heading>{title}</Heading>
+  {description && <p>{description}</p>}
+</div>
+
+<style>
+  .section-head h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+  }
+</style>

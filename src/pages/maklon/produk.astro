@@ -1,0 +1,295 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ProductPhoto from '../../components/ProductPhoto.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products, productGroups, productStats } from '../../data/herbal-products';
+---
+
+<BaseLayout
+  title="Katalog Produk"
+  description="Katalog produk herbal CBM: brand milik kami dan produk maklon untuk klien, lengkap dengan status izin edar BPOM dan P-IRT."
+  section="maklon"
+>
+  <PageHero
+    eyebrow="Katalog Produk"
+    title="Katalog Produk Kami"
+    description="Tiga puluh produk herbal: 16 dari brand kami dan 14 dari katalog maklon, lengkap dengan ukuran serta status izin edarnya."
+    primaryLabel="Ajukan Konsultasi"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Layanan"
+    secondaryHref="/maklon/layanan/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="stats">
+        {
+          productStats.map((stat) => (
+            <div class="stats__item">
+              <span class="stats__value">{stat.value}</span>
+              <span class="stats__label">{stat.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Portofolio Produksi"
+        title="Produk yang Telah Kami Produksi"
+        description="Brand milik kami dan produk maklon untuk klien, lengkap dengan status izin edarnya."
+      />
+      {
+        productGroups.map((group) => (
+          <div class="pf-group">
+            <h3 class="pf-group__title">
+              {group === 'Brand Kami' ? 'Katalog Produk Kami' : 'Katalog Maklon'}
+              <span class="pf-group__count">
+                ({products.filter((item) => item.group === group).length})
+              </span>
+            </h3>
+            <div class="grid grid--3">
+              {products
+                .filter((item) => item.group === group)
+                .map((item) => (
+                  <article class="card pf">
+                    <ProductPhoto name={item.name} photo={item.photo} />
+                    <div class="pf__body">
+                      <span class="pf__cat">{item.category}</span>
+                      <h4>{item.name}</h4>
+                      {item.sizes?.length ? (
+                        <p class="pf__size">{item.sizes.join(' · ')}</p>
+                      ) : (
+                        item.size && <p class="pf__size">{item.size}</p>
+                      )}
+                      {item.description && (
+                        <p class="pf__desc">{item.description}</p>
+                      )}
+                      <div class="cluster">
+                        <span
+                          class:list={[
+                            'badge',
+                            item.certification.includes('P-IRT') && 'badge--slate',
+                          ]}
+                        >
+                          <Icon name="shield" size={14} />
+                          {item.certification}
+                        </span>
+                      </div>
+                      {item.regNumber && (
+                        <p class="pf__reg">{item.regNumber}</p>
+                      )}
+                    </div>
+                  </article>
+                ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="notice">
+        <Icon name="bulb" size={18} />
+        <span>
+          Tidak ada produk yang Anda cari? Kami tetap bisa mengembangkan produk baru.
+          Sampaikan kebutuhan Anda dan tim R&D kami akan membantu mencari formula yang
+          sesuai.
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Memilih Format"
+        title="Panduan Singkat Memilih Format Kemasan"
+        description="Pertimbangkan beberapa hal berikut sebelum memutuskan format kemasan."
+      />
+      <div class="grid grid--3">
+        <div class="guide">
+          <h3>Dari Mana Produk Berasal</h3>
+          <p>
+            Produk cairan memerlukan botol dan segel, produk kering memerlukan
+            kemasan yang melindungi dari kelembapan. Kami bantu menentukannya.
+          </p>
+        </div>
+        <div class="guide">
+          <h3>Ke Mana Produk Dikirim</h3>
+          <p>
+            Untuk penjualan ritel, kemasan individual lebih praktis. Untuk distribusi
+            ke gudang, dus per karton lebih hemat ongkos kirim.
+          </p>
+        </div>
+        <div class="guide">
+          <h3>Berapa Target Harga Jual</h3>
+          <p>
+            Biaya kemasan ikut memengaruhi margin. Kami sajikan beberapa pilihan agar
+            Anda bisa menyeimbangkan biaya dan tampilan produk.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Tidak Menemukan Format yang Cocok?"
+    description="Kirimkan kebutuhan Anda. Kami bantu rekomendasikan format kemasan dan estimasi biaya produksi."
+    primaryLabel="Konsultasi Produk"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Proses Produksi"
+    secondaryHref="/maklon/proses/"
+  />
+</BaseLayout>
+
+<style>
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 1.25rem;
+  }
+
+  .stats__item {
+    padding: 1.5rem;
+    text-align: center;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .stats__value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand);
+    line-height: 1.1;
+  }
+
+  .stats__label {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+
+  .notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--brand-50);
+    border: 1px solid var(--brand-100);
+    border-radius: var(--radius-lg);
+    font-size: 0.9375rem;
+    color: var(--brand-dark);
+  }
+
+  .notice :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .guide {
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .guide h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .guide p {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .pf-group + .pf-group {
+    margin-top: 2.5rem;
+  }
+
+  .pf-group__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--brand-100);
+  }
+
+  .pf-group__count {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink-4);
+  }
+
+  .pf {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .pf :global(.pphoto) {
+    border-radius: 0;
+  }
+
+  .pf__body {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  .pf__body h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .pf__cat {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+
+  .pf__size {
+    font-size: 0.8125rem;
+    color: var(--ink-4);
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+  }
+
+  .pf__desc {
+    font-size: 0.875rem;
+    color: var(--ink-3);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pf__reg {
+    margin-top: 0.625rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+</style>

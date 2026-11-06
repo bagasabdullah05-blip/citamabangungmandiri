@@ -1,0 +1,343 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { herbalCertificates } from '../../data/herbal-certificates';
+import { faqs } from '../../data/herbal-faq';
+
+const categories = [
+  {
+    icon: 'shield',
+    title: 'Izin P-IRT',
+    body: 'Untuk produk pangan yang diproduksi skala rumah tangga dan usaha kecil, izin P-IRT menjadi dasar produk boleh dipasarkan secara legal.',
+    points: [
+      'Diterbitkan oleh Kementerian Perindustrian',
+      'Berlaku untuk kelompok produk pangan tertentu',
+      'Pendampingan sampai berkas diterbitkan',
+    ],
+  },
+  {
+    icon: 'certificate',
+    title: 'Sertifikat Halal',
+    body: 'Sertifikasi halal membantu produk lebih dipercaya dan diperlukan oleh sebagian pasar modern serta distribusi nasional.',
+    points: [
+      'Dikeluarkan lembaga halal yang diakui',
+      'Melalui tahap registrasi dan verifikasi',
+      'Dicantumkan pada label kemasan',
+    ],
+  },
+  {
+    icon: 'award',
+    title: 'Izin BPOM',
+    body: 'Produk dengan klaim kesehatan tertentu memerlukan izin edar BPOM. Prosesnya lebih panjang dan berkriteria spesifik.',
+    points: [
+      'Diperlukan untuk klaim kesehatan tertentu',
+      'Melalui pengujian dan penilaian teknis',
+      'Waktu proses mengikuti ketentuan BPOM',
+    ],
+  },
+  {
+    icon: 'flask',
+    title: 'Sistem Mutu Produksi',
+    body: 'Kami menerapkan prosedur produksi yang tertulis dan terekam agar hasil antar batch dapat ditelusuri.',
+    points: [
+      'Prosedur kerja tertulis',
+      'Pencatatan parameter produksi',
+      'Penanganan koreksi dan deviasi',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Sertifikasi"
+  description="Sertifikasi dan perizinan produk herbal: izin P-IRT, sertifikat halal, izin BPOM, dan sistem mutu produksi."
+  section="maklon"
+>
+  <PageHero
+    eyebrow="Sertifikasi"
+    title="Perizinan yang Kami Kerjakan Bersama Anda"
+    description="Produk herbal harus memiliki izin edar yang sesuai jenisnya. Kami membantu proses pengurusan sampai produk siap dipasarkan."
+    primaryLabel="Tanya Perizinan"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Produk"
+    secondaryHref="/maklon/produk/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Jenis Perizinan"
+        title="Empat Ranah yang Perlu Disiapkan"
+        description="Pemilihan jenis izin bergantung pada klaim produk, skala produksi, dan bentuk produknya."
+      />
+      <div class="grid grid--2">
+        {
+          categories.map((item) => (
+            <article class="card card--hover">
+              <div class="card__icon">
+                <Icon name={item.icon} size={24} />
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <ul role="list" class="points">
+                {item.points.map((point) => (
+                  <li>
+                    <Icon name="check" size={16} />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Status Saat Ini"
+        title="Progres Perizinan Kami"
+        description="Status berikut berlaku untuk produk jamu dan serbuk dalam kemasan yang sedang dan akan kami produksi."
+      />
+      <div class="grid grid--4">
+        {
+          herbalCertificates.map((cert) => (
+            <div class="cert">
+              <div class="cert__head">
+                <h3>{cert.name}</h3>
+                <span
+                  class:list={[
+                    'badge',
+                    cert.status === 'Proses'
+                      ? 'badge badge--amber'
+                      : cert.status === 'Aktif'
+                        ? 'badge'
+                        : 'badge badge--slate',
+                  ]}
+                >
+                  {cert.status}
+                </span>
+              </div>
+              <p class="cert__desc">{cert.description}</p>
+              <p class="cert__detail">{cert.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Pertanyaan Umum"
+        title="Soal Perizinan Produk"
+        description="Pertanyaan yang sering muncul terkait izin edar produk herbal."
+      />
+      <div class="faqs">
+        {
+          faqs.slice(3, 4).map((faq) => (
+            <details class="faq">
+              <summary>
+                <span>{faq.q}</span>
+                <Icon name="chevron" size={18} class="faq__icon" />
+              </summary>
+              <p>{faq.a}</p>
+            </details>
+          ))
+        }
+        <details class="faq">
+          <summary>
+            <span>Siapa yang menanggung biaya pengurusan izin?</span>
+            <Icon name="chevron" size={18} class="faq__icon" />
+          </summary>
+          <p>
+            Biaya resmi pengurusan izin menjadi tanggung jawab klien. Sementara biaya
+            pendampingan dan penyiapan berkas ditanggung sebagai bagian dari layanan
+            produksi kami. Rinciannya selalu disampaikan di awal kerja sama.
+          </p>
+        </details>
+        <details class="faq">
+          <summary>
+            <span>Berapa lama proses perizinan berjalan?</span>
+            <Icon name="chevron" size={18} class="faq__icon" />
+          </summary>
+          <p>
+            Waktu proses berbeda-beda tergantung jenis izin dan kondisi berkas. Untuk
+           estimate yang lebih tepat, sampaikan rencana produk Anda agar kami bisa
+            memberi gambaran waktu yang realistis.
+          </p>
+        </details>
+      </div>
+      <div class="text-center" style="margin-top: 2.5rem">
+        <a href="/maklon/proses/" class="btn btn--secondary">Lihat Proses Produksi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="notice">
+        <span class="notice__icon">
+          <Icon name="bulb" size={22} />
+        </span>
+        <div>
+          <h3 class="notice__title">Catatan penting soal klaim produk</h3>
+          <p>
+            Aturan penulisan klaim pada kemasan produk herbal punya ketentuan tersendiri.
+            Klaim yang tidak didukung data berisiko membuat produk ditolak atau diberi
+            sanksi. Karena itu, sebelum produksi berjalan, kami selalu mendiskusikan
+            klaim yang ingin Anda gunakan supaya sesuai ketentuan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Perlu Bantuan Perizinan?"
+    description="Ceritakan produk yang ingin Anda produksi. Kami bantu menentukan izin apa yang diperlukan dan langkah pengajuannya."
+    primaryLabel="Konsultasi Perizinan"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Katalog Produk"
+    secondaryHref="/maklon/produk/"
+  />
+</BaseLayout>
+
+<style>
+  .points {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1.125rem 0 0;
+    padding: 1.125rem 0 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+
+  .points :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--brand);
+  }
+
+  .cert {
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .cert__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cert__head h3 {
+    font-size: 1.0625rem;
+  }
+
+  .cert__desc {
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    margin-bottom: 0.5rem;
+  }
+
+  .cert__detail {
+    font-size: 0.8125rem;
+    color: var(--ink-4);
+  }
+
+  .faqs {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .faq {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--ink);
+    list-style: none;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__icon {
+    flex-shrink: 0;
+    color: var(--brand);
+    transition: transform var(--transition);
+  }
+
+  .faq[open] .faq__icon {
+    transform: rotate(90deg);
+  }
+
+  .faq p {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .notice {
+    display: flex;
+    gap: 1.25rem;
+    padding: 2rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: var(--radius-lg);
+  }
+
+  .notice__icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius);
+    background: #fef3c7;
+    color: #92400e;
+    flex-shrink: 0;
+  }
+
+  .notice__title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .notice p {
+    font-size: 0.9375rem;
+    color: #78350f;
+  }
+</style>

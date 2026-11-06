@@ -1,0 +1,162 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CbmIdentity from '../../components/CbmIdentity.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services } from '../../data/company';
+import { herbalCertificates } from '../../data/herbal-certificates';
+
+const certified = herbalCertificates.filter((cert) => cert.status === 'Aktif');
+---
+
+<BaseLayout
+  title="Profil Perusahaan"
+  description="Profil PT. Citra Bangun Mandiri: perusahaan herbal dan layanan maklon produk herbal."
+  section="profil"
+>
+  <PageHero
+    eyebrow="Profil Perusahaan"
+    title="Mitra Herbal yang Terpercaya"
+    description="Perusahaan herbal yang memproduksi produk berkualitas dan menyediakan jasa maklon untuk brand di seluruh Indonesia."
+    primaryLabel="Lihat Layanan"
+    primaryHref="/maklon/layanan/"
+    secondaryLabel="Hubungi Kami"
+    secondaryHref="/kontak/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="split__content prose">
+          <SectionHead
+            eyebrow="Tentang Kami"
+            title="Standar Mutu yang Jelas"
+            description="Kami percaya produk herbal yang baik ditentukan oleh bahan, proses, dan ketepatan pengerjaan."
+          />
+          <p>
+            PT. Citra Bangun Mandiri adalah perusahaan herbal yang memproduksi
+            produk herbal berkualitas dan menyediakan jasa maklon untuk brand lain.
+          </p>
+          <p>
+            Produk kami dipasarkan melalui lebih dari seribu apotek, dan lebih dari
+            20 brand mempercayakan produksinya kepada kami.
+          </p>
+          <p>
+            Uji laboratorium serta pengajuan izin BPOM, HAKI, dan P-IRT kami urus.
+            Gratis untuk order di atas 1.000 pcs per varian.
+          </p>
+          <div class="cluster" style="margin-top: 1.5rem">
+            <a href="/profil/tentang/" class="btn btn--primary btn--sm">Selengkapnya</a>
+            <a href="/maklon/sertifikasi/" class="btn btn--secondary btn--sm">Lihat Sertifikasi</a>
+          </div>
+        </div>
+        <aside class="split__aside">
+          <div class="panel">
+            <h3 class="panel__title">Sertifikasi Produk</h3>
+            <ul role="list" class="panel__list">
+              {
+                certified.map((cert) => (
+                  <li>
+                    <strong>{cert.name}</strong>
+                    <span>{cert.status}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <a href="/maklon/sertifikasi/" class="panel__link">
+              Lihat Sertifikasi
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <CbmIdentity />
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Layanan Maklon"
+        title="Empat Model Kerja Sama"
+        description="Pilih sesuai kebutuhan Anda: dari produksi dengan merek sendiri sampai kita yang menyiapkan ide produk."
+      />
+      <div class="grid grid--2">
+        {services.map((service) => <ServiceCard {...service} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Punya Kebutuhan Produk Herbal?"
+    description="Konsultasi awal tidak dipungut biaya. Sampaikan kebutuhan Anda dan kami akan membantu mencari solusi yang paling masuk akal."
+    primaryLabel="Mulai Konsultasi"
+    primaryHref="/kontak/"
+    secondaryLabel="Tentang Kami"
+    secondaryHref="/profil/tentang/"
+  />
+</BaseLayout>
+
+<style>
+  .split {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 62rem) {
+    .split {
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  .panel {
+    padding: 1.75rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .panel__title {
+    font-size: 1.0625rem;
+    margin-bottom: 1.125rem;
+  }
+
+  .panel__list {
+    display: grid;
+    gap: 0.875rem;
+    margin: 0;
+    padding: 0 0 1.125rem;
+  }
+
+  .panel__list li {
+    display: grid;
+    gap: 0.125rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px dashed var(--line-strong);
+  }
+
+  .panel__list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .panel__list strong {
+    font-size: 0.9375rem;
+    color: var(--ink);
+  }
+
+  .panel__list span {
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+  }
+
+  .panel__link {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+</style>

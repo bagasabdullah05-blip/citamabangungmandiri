@@ -1,0 +1,374 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { herbalServices, serviceComparison } from '../../data/herbal-services';
+import { processSteps } from '../../data/herbal-process';
+---
+
+<BaseLayout
+  title="Layanan Maklon"
+  description="Empat model layanan maklon herbal: private label, OEM, ODM, dan pengemasan custom. Lengkap dengan konsultasi, formulasi, produksi, dan pengemasan."
+  section="maklon"
+>
+  <PageHero
+    eyebrow="Layanan Maklon"
+    title="Empat Cara Bekerja Sama"
+    description="Pilih sesuai kondisi Anda. Kami menyesuaikan ruang lingkup kerja agar sesuai dengan kebutuhan dan tahap bisnis Anda."
+    primaryLabel="Ajukan Konsultasi"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Produk"
+    secondaryHref="/maklon/produk/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="svc-list">
+        {
+          herbalServices.map((service, index) => (
+            <article class="svc">
+              <div class="svc__head">
+                <span class="svc__index">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h2>{service.title}</h2>
+                  <p class="svc__tag">{service.tagline}</p>
+                </div>
+              </div>
+
+              <div class="svc__body">
+                <p class="svc__desc">{service.description}</p>
+                <ul role="list" class="svc__list">
+                  {service.deliverables.map((item) => (
+                    <li>
+                      <Icon name="check" size={16} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <p class="svc__moq">
+                <span>Minimum order</span>
+                <strong>{service.minOrder}</strong>
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Ringkasan"
+        title="Mana yang Cocok untuk Anda?"
+        description="Pertimbangkan kondisi bisnis Anda saat memilih model layanan."
+      />
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">
+            Perbandingan model layanan maklon herbal
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Layanan</th>
+              <th scope="col">Cocok untuk</th>
+              <th scope="col">Formulasi</th>
+              <th scope="col">Kemasan</th>
+              <th scope="col">MOQ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              serviceComparison.map((row) => (
+                <tr>
+                  <td>
+                    <strong>{row.service}</strong>
+                    <span class="td-sub">
+                      {herbalServices.find((service) => service.title === row.service)
+                        ?.tagline}
+                    </span>
+                  </td>
+                  <td>{row.bestFor}</td>
+                  <td>{row.formulation}</td>
+                  <td>Sesuai permintaan</td>
+                  <td>
+                    {
+                      herbalServices.find((service) => service.title === row.service)
+                        ?.minOrder
+                    }
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Yang Anda Dapatkan"
+        title="Cakupan Kerja Lengkap"
+        description="Kami menangani bagian yang biasanya merepotkan brand baru, sehingga Anda bisa fokus pada pemasaran."
+      />
+      <div class="grid grid--4">
+        <div class="inc">
+          <span class="inc__icon">
+            <Icon name="bulb" size={20} />
+          </span>
+          <h3>Riset Produk</h3>
+          <p>Analisis bahan, kombinasi, dan permintaan pasar sebelum produksi dimulai.</p>
+        </div>
+        <div class="inc">
+          <span class="inc__icon">
+            <Icon name="flask" size={20} />
+          </span>
+          <h3>Formulasi</h3>
+          <p>Perancangan formula dan pembuatan prototipe untuk Anda cicipi.</p>
+        </div>
+        <div class="inc">
+          <span class="inc__icon">
+            <Icon name="shield" size={20} />
+          </span>
+          <h3>Pengawasan Mutu</h3>
+          <p>Pemeriksaan tiap batch agar hasil konsisten antar produksi.</p>
+        </div>
+        <div class="inc">
+          <span class="inc__icon">
+            <Icon name="truck" size={20} />
+          </span>
+          <h3>Pengiriman</h3>
+          <p>Pengemasan rapi dan pengiriman ke alamat yang Anda tentukan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Tahapan Singkat"
+        title="Ringkasan Proses"
+        description="Enam tahap dari konsultasi hingga pengiriman. Rinciannya ada di halaman proses produksi."
+      />
+      <div class="phases">
+        {
+          processSteps.map((step) => (
+            <a href="/maklon/proses/" class="phase">
+              <span class="phase__num">{step.step}</span>
+              <span class="phase__title">{step.title}</span>
+              <span class="phase__time">{step.duration}</span>
+            </a>
+          ))
+        }
+      </div>
+      <div class="text-center" style="margin-top: 2rem">
+        <a href="/maklon/proses/" class="btn btn--secondary">Lihat Detail Proses</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Belum Yakin Layanan Mana yang Cocok?"
+    description="Ceritakan kondisi bisnis Anda. Kami akan bantu rekomendasikan format yang paling masuk akal untuk tahap Anda."
+    primaryLabel="Konsultasi Gratis"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Katalog Produk"
+    secondaryHref="/maklon/produk/"
+  />
+</BaseLayout>
+
+<style>
+  .svc-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .svc {
+    display: grid;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  @media (min-width: 60rem) {
+    .svc {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) auto;
+      align-items: start;
+      gap: 2rem;
+    }
+  }
+
+  .svc__head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .svc__index {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius);
+    background: var(--brand-50);
+    color: var(--brand-dark);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    flex-shrink: 0;
+  }
+
+  .svc h2 {
+    font-size: 1.375rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .svc__tag {
+    font-size: 0.875rem;
+    color: var(--ink-4);
+  }
+
+  .svc__desc {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+    margin-bottom: 1.125rem;
+  }
+
+  .svc__list {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .svc__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+
+  .svc__list :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--brand);
+  }
+
+  .svc__moq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.875rem 1.125rem;
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 60rem) {
+    .svc__moq {
+      flex-direction: column;
+    }
+  }
+
+  .svc__moq span {
+    font-size: 0.75rem;
+    color: var(--ink-4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .svc__moq strong {
+    font-size: 1rem;
+    color: var(--brand-dark);
+  }
+
+  .td-sub {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--ink-4);
+  }
+
+  .inc {
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .inc__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius);
+    background: var(--brand-50);
+    color: var(--brand);
+    margin-bottom: 1rem;
+  }
+
+  .inc h3 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .inc p {
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    gap: 0.875rem;
+  }
+
+  .phase {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .phase:hover {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .phase__num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    color: var(--brand);
+  }
+
+  .phase__title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .phase__time {
+    font-size: 0.75rem;
+    color: var(--ink-4);
+  }
+</style>

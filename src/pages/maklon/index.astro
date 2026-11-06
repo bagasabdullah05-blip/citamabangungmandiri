@@ -1,0 +1,556 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import ProductShowcase from '../../components/ProductShowcase.astro';
+import ProductWelcome from '../../components/ProductWelcome.astro';
+import ProductPhoto from '../../components/ProductPhoto.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { herbalHero, advantages } from '../../data/herbal';
+import { herbalServices } from '../../data/herbal-services';
+import { products } from '../../data/herbal-products';
+import { site } from '../../data/site';
+
+const brandProducts = products.filter((product) => product.group === 'Brand Kami');
+const maklonProducts = products.filter((product) => product.group === 'Maklon Klien');
+
+const waHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
+  'Halo PT. Citra Bangun Mandiri, saya ingin konsultasi layanan maklon herbal.',
+)}`;
+---
+
+<BaseLayout
+  title="Maklon Herbal"
+  description="Layanan maklon produk herbal: private label, OEM, dan ODM untuk jamu, serbuk, teh, minyak, lotion, dan kapsul. Produksi dengan standar mutu dan pendampingan izin edar."
+  section="maklon"
+>
+  <PageHero
+    eyebrow={herbalHero.badge}
+    title={herbalHero.title}
+    description={herbalHero.lead}
+    primaryLabel="Konsultasi Gratis via WhatsApp"
+    primaryHref={waHref}
+    primaryExternal
+    secondaryLabel="Lihat Program Gratis Perizinan"
+    secondaryHref="/maklon/gratis-perizinan/"
+    points={herbalHero.categories}
+    stats={herbalHero.stats}
+    note="Balasan rata-rata di hari kerja yang sama. Tanpa biaya dan tanpa ikatan."
+  />
+
+  <ProductShowcase />
+
+  <ProductWelcome />
+
+  <section class="section" id="keunggulan">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Keunggulan"
+        title="Kenapa Bekerja Sama dengan Kami"
+        description="Enam hal yang biasanya menjadi pertanyaan utama brand herbal sebelum memilih mitra produksi."
+      />
+      <div class="grid grid--3">
+        {advantages.map((item) => <ServiceCard {...item} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Layanan Maklon"
+        title="Empat Model Kerja Sama"
+        description="Pilih sesuai kebutuhan Anda: dari produksi dengan merek sendiri sampai kita yang menyiapkan ide produk."
+      />
+      <div class="grid grid--2">
+        {
+          herbalServices.map((service) => (
+            <article class="svc">
+              <div class="svc__head">
+                <span class="svc__icon">
+                  <Icon name={service.icon} size={22} />
+                </span>
+                <div>
+                  <h3>{service.title}</h3>
+                  <p class="svc__tag">{service.tagline}</p>
+                </div>
+              </div>
+              <p class="svc__desc">{service.description}</p>
+              <ul role="list" class="svc__list">
+                {service.deliverables.map((item) => (
+                  <li>
+                    <Icon name="check" size={16} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p class="svc__moq">
+                <span>Minimum order</span>
+                <strong>{service.minOrder}</strong>
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="produk">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Katalog Produk"
+        title="Produk Kami"
+        description="Produk herbal yang kami produksi dengan brand sendiri."
+      />
+      <div class="plist">
+        {
+          brandProducts.map((item) => (
+            <article class="pcard">
+              <ProductPhoto name={item.name} photo={item.photo} compact />
+              <div class="pcard__top">
+                <span class="badge">{item.category}</span>
+                {item.certification.map((cert) => (
+                  <span class="badge badge--slate">
+                    <Icon name="shield" size={14} />
+                    {cert}
+                  </span>
+                ))}
+              </div>
+              <h3>{item.name}</h3>
+              {item.sizes?.length ? (
+                <p class="pcard__size">{item.sizes.join(' · ')}</p>
+              ) : (
+                item.size && <p class="pcard__size">{item.size}</p>
+              )}
+              {item.regNumber && <p class="pcard__reg">{item.regNumber}</p>}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="produk-maklon">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Portofolio Maklon"
+        title="Produk yang Pernah Di-Maklon"
+        description="Produk brand klien yang pernah kami produksi, dari sari kurma sampai kapsul herbal."
+      />
+      <div class="plist">
+        {
+          maklonProducts.map((item) => (
+            <article class="pcard">
+              <ProductPhoto name={item.name} photo={item.photo} compact />
+              <div class="pcard__top">
+                <span class="badge">{item.category}</span>
+                {item.certification.map((cert) => (
+                  <span class="badge badge--slate">
+                    <Icon name="shield" size={14} />
+                    {cert}
+                  </span>
+                ))}
+              </div>
+              <h3>{item.name}</h3>
+              {item.sizes?.length ? (
+                <p class="pcard__size">{item.sizes.join(' · ')}</p>
+              ) : (
+                item.size && <p class="pcard__size">{item.size}</p>
+              )}
+              {item.regNumber && <p class="pcard__reg">{item.regNumber}</p>}
+            </article>
+          ))
+        }
+      </div>
+      <div class="text-center" style="margin-top: 2.5rem">
+        <a href="/maklon/produk/" class="btn btn--secondary">
+          Lihat Katalog Lengkap
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Langkah Awal"
+        title="Mulai dari Konsultasi Singkat"
+        description="Tidak ada biaya untuk konsultasi awal. Jelaskan kebutuhan Anda, kami bantu estimasi dan pilih format yang cocok."
+      />
+      <div class="grid grid--3">
+        <div class="step">
+          <span class="step__num">01</span>
+          <h3>Sampaikan Kebutuhan</h3>
+          <p>
+            Sampaikan jenis produk, manfaat yang dituju, dan format kemasan yang Anda
+            inginkan.
+          </p>
+        </div>
+        <div class="step">
+          <span class="step__num">02</span>
+          <h3>Terima Estimasi</h3>
+          <p>
+            Kami kirimkan rentang harga, minimum order, dan jadwal produksi yang
+            masuk akal.
+          </p>
+        </div>
+        <div class="step">
+          <span class="step__num">03</span>
+          <h3>Contoh Produk</h3>
+          <p>
+            Jika sesuai, kami buat prototipe atau contoh untuk Anda cicipi sebelum
+            produksi massal.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="promo">
+        <div class="promo__body">
+          <p class="eyebrow">Program Klien</p>
+          <h2>Gratis Perizinan untuk Order di Atas 1.000 Pcs</h2>
+          <p>
+            Untuk order di atas 1.000 unit per varian, biaya uji laboratorium serta
+            pengajuan izin BPOM dan izin HAKI kami tanggung sepenuhnya. Anda cukup
+            fokus pada produk dan pemasaran.
+          </p>
+          <div class="promo__actions">
+            <a href="/maklon/gratis-perizinan/" class="btn btn--primary">
+              Lihat Detail Program
+              <Icon name="arrow" size={18} />
+            </a>
+            <a href={waHref} class="btn btn--secondary" target="_blank" rel="noopener">
+              Cek Eligibility Sekarang
+            </a>
+          </div>
+        </div>
+
+        <ul role="list" class="promo__list">
+          <li>
+            <Icon name="check" size={16} />
+            Uji laboratorium gratis
+          </li>
+          <li>
+            <Icon name="check" size={16} />
+            Izin BPOM gratis
+          </li>
+          <li>
+            <Icon name="check" size={16} />
+            Izin HAKI gratis
+          </li>
+          <li>
+            <Icon name="minus" size={16} />
+            Berlaku mulai 1.001 unit per varian
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Siap Memulai Produksi Brand Anda?"
+    note="Kami balas dengan estimasi biaya, timeline, dan daftar berkas izin pada hari kerja yang sama. Tanpa biaya dan tanpa ikatan."
+    primaryLabel="Konsultasi Gratis via WhatsApp"
+    primaryHref={waHref}
+    primaryExternal
+    secondaryLabel="Lihat Program Gratis Perizinan"
+    secondaryHref="/maklon/gratis-perizinan/"
+  />
+</BaseLayout>
+
+<style>
+  .svc {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .svc:hover {
+    border-color: var(--brand-light);
+    box-shadow: var(--shadow);
+  }
+
+  .svc__head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.125rem;
+  }
+
+  .svc__icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius);
+    background: var(--brand-50);
+    color: var(--brand);
+    flex-shrink: 0;
+  }
+
+  .svc__head h3 {
+    margin-bottom: 0.125rem;
+  }
+
+  .svc__tag {
+    font-size: 0.8125rem;
+    color: var(--ink-4);
+  }
+
+  .svc__desc {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+    margin-bottom: 1.25rem;
+  }
+
+  .svc__list {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0 0 1.25rem;
+    padding: 1.125rem 0 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .svc__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+
+  .svc__list :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--brand);
+  }
+
+  .svc__moq {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: auto;
+    padding: 0.75rem 1rem;
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+  }
+
+  .svc__moq span {
+    color: var(--ink-3);
+  }
+
+  .svc__moq strong {
+    color: var(--brand-dark);
+  }
+
+  .prod {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .plist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1rem;
+  }
+
+  .pcard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition:
+      border-color var(--transition),
+      transform var(--transition);
+  }
+
+  .pcard:hover {
+    border-color: var(--brand-light);
+    transform: translateY(-2px);
+  }
+
+  .pcard__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .pcard h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .pcard__size {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink-4);
+  }
+
+  .pcard__reg {
+    margin-top: auto;
+    font-family: ui-monospace, monospace;
+    font-size: 0.6875rem;
+    color: var(--ink-3);
+  }
+
+  .prod__photo {
+    display: block;
+    width: 100%;
+    height: 14rem;
+    object-fit: cover;
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+    margin-bottom: 1.25rem;
+  }
+
+  .prod__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .prod__form {
+    font-size: 0.8125rem;
+    color: var(--ink-4);
+    font-weight: 600;
+  }
+
+  .prod h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prod__reg {
+    margin-top: 0.625rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+
+  .step {
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .step__num {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--brand);
+    margin-bottom: 0.75rem;
+  }
+
+  .step h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .step p {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .promo {
+    display: grid;
+    gap: 2rem;
+    padding: clamp(2rem, 4vw, 3rem);
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+    border-radius: var(--radius-lg);
+    color: #fff;
+  }
+
+  @media (min-width: 60rem) {
+    .promo {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      align-items: center;
+    }
+  }
+
+  .promo h2 {
+    color: #fff;
+    margin: 0.75rem 0 0.875rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .promo__body > p:not(.eyebrow) {
+    color: rgb(255 255 255 / 0.9);
+    font-size: 1rem;
+    max-width: 52ch;
+  }
+
+  .promo .eyebrow {
+    color: #fff;
+  }
+
+  .promo .eyebrow::before {
+    background: #fff;
+  }
+
+  .promo__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .promo__actions .btn--secondary {
+    border-color: rgb(255 255 255 / 0.4);
+    background: transparent;
+    color: #fff;
+  }
+
+  .promo__actions .btn--secondary:hover {
+    border-color: #fff;
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .promo__list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 1.75rem;
+    background: rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(255 255 255 / 0.18);
+    border-radius: var(--radius-lg);
+  }
+
+  .promo__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: #fff;
+  }
+
+  .promo__list :global(svg) {
+    flex-shrink: 0;
+  }
+</style>

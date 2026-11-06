@@ -1,0 +1,369 @@
+---
+import Icon from './Icon.astro';
+import LangSwitch from './LangSwitch.astro';
+import { nav, site } from '../data/site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href);
+---
+
+<header class="header" id="site-header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label={`${site.name} - Beranda`}>
+      <span class="brand__mark" aria-hidden="true">
+        <Icon name="building" size={20} />
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">Citra Bangun</span>
+        <span class="brand__tag">Mandiri</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navigasi utama">
+      <ul class="nav__list" role="list">
+        {
+          nav.map((item) => (
+            <li class="nav__item">
+              {item.children ? (
+                <div class="nav__group">
+                  <a
+                    href={item.href}
+                    class:list={['nav__link', { 'is-active': isActive(item.href) }]}
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {item.label}
+                    <Icon name="chevron" size={14} class="nav__caret" />
+                  </a>
+                  <div class="nav__panel">
+                    <ul role="list">
+                      {item.children.map((child) => (
+                        <li>
+                          <a href={child.href} class="nav__child">
+                            <span class="nav__child-label">{child.label}</span>
+                            {child.description && (
+                              <span class="nav__child-desc">{child.description}</span>
+                            )}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href={item.href}
+                  class:list={['nav__link', { 'is-active': isActive(item.href) }]}
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <LangSwitch />
+      <a href={`https://wa.me/${site.whatsapp}`} class="btn btn--primary btn--sm header__cta">
+        Hubungi Kami
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-nav-toggle
+      >
+        <Icon name="menu" size={22} />
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <div class="container mobile-nav__inner">
+      {
+        nav.map((item) => (
+          <div class="mobile-nav__group">
+            <a href={item.href} class="mobile-nav__title">
+              {item.label}
+            </a>
+            {item.children && (
+              <ul role="list" class="mobile-nav__list">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.href}>{child.label}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))
+      }
+      <a href={`https://wa.me/${site.whatsapp}`} class="btn btn--primary btn--block">
+        Hubungi via WhatsApp
+      </a>
+      <LangSwitch />
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgb(255 255 255 / 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header__inner {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .brand__mark {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: #fff;
+  }
+
+  .brand__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .brand__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .brand__tag {
+    font-size: 0.6875rem;
+    color: var(--brand);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav__item {
+    position: relative;
+  }
+
+  .nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+
+  .nav__link:hover {
+    color: var(--brand);
+    background: var(--brand-50);
+  }
+
+  .nav__link.is-active {
+    color: var(--brand);
+    font-weight: 600;
+  }
+
+  .nav__caret {
+    transition: transform var(--transition);
+  }
+
+  .nav__group:hover .nav__caret {
+    transform: rotate(90deg);
+  }
+
+  .nav__panel {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    min-width: 19rem;
+    padding: 0.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition:
+      opacity var(--transition),
+      transform var(--transition),
+      visibility var(--transition);
+  }
+
+  .nav__group:hover .nav__panel,
+  .nav__group:focus-within .nav__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav__panel ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav__child {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius);
+    color: var(--ink);
+  }
+
+  .nav__child:hover {
+    background: var(--brand-50);
+  }
+
+  .nav__child-label {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .nav__child-desc {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+    margin-top: 0.125rem;
+  }
+
+  .nav__child:hover .nav__child-label {
+    color: var(--brand-dark);
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+  }
+
+  .mobile-nav {
+    border-top: 1px solid var(--line);
+    background: #fff;
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+  }
+
+  .mobile-nav__inner {
+    padding-block: 1.25rem 1.75rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .mobile-nav__title {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .mobile-nav__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.125rem;
+    border-left: 2px solid var(--line);
+    padding-left: 0.875rem;
+  }
+
+  .mobile-nav__list a {
+    display: block;
+    padding: 0.375rem 0;
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 62rem) {
+    .nav,
+    .header__cta {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: grid;
+      place-items: center;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-mobile-nav]');
+
+  if (toggle && panel) {
+    const close = () => {
+      panel.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Buka menu navigasi');
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = panel.hidden;
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+      if (open) {
+        panel.querySelector<HTMLAnchorElement>('a')?.focus();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !panel.hidden) {
+        close();
+        toggle.focus();
+      }
+    });
+
+    window.matchMedia('(min-width: 62.0625rem)').addEventListener('change', close);
+  }
+</script>

@@ -1,0 +1,279 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import CbmIdentity from '../../components/CbmIdentity.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { timeline, stats } from '../../data/company';
+---
+
+<BaseLayout
+  title="Tentang Kami"
+  description="Sejarah, visi, misi, dan nilai-nilai PT. Citra Bangun Mandiri sebagai perusahaan herbal dan mitra maklon."
+  section="profil"
+>
+  <PageHero
+    eyebrow="Tentang Kami"
+    title="Perusahaan Herbal dan Mitra Maklon"
+    description="Cerita singkat tentang PT. Citra Bangun Mandiri sebagai perusahaan herbal dan mitra maklon brand-brand Indonesia."
+    primaryLabel="Layanan Maklon"
+    primaryHref="/maklon/layanan/"
+    secondaryLabel="Layanan Herbal"
+    secondaryHref="/maklon/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="prose">
+          <SectionHead
+            eyebrow="Cerita Kami"
+            title="Fokus pada Produk Herbal Berkualitas"
+            description="Kepercayaan klien kami bangun melalui pengerjaan yang selesai tepat waktu dan hasilnya rapi."
+          />
+          <p>
+            PT. Citra Bangun Mandiri adalah perusahaan herbal yang memproduksi
+            produk herbal berkualitas dan menyediakan jasa maklon untuk brand lain.
+          </p>
+          <p>
+            Produk kami dipasarkan melalui lebih dari seribu apotek, dan lebih dari
+            20 brand mempercayakan produksinya kepada kami.
+          </p>
+          <p>
+            Uji laboratorium serta pengajuan izin BPOM, HAKI, dan P-IRT kami urus.
+            Gratis untuk order di atas 1.000 pcs per varian.
+          </p>
+        </div>
+        <aside class="facts">
+          <h3 class="facts__title">Fakta Singkat</h3>
+          <dl>
+            {
+              stats.map((stat) => (
+                <div class="facts__row">
+                  <dt>{stat.label}</dt>
+                  <dd>{stat.value}</dd>
+                </div>
+              ))
+            }
+            <div class="facts__row">
+              <dt>Berdiri</dt>
+              <dd>2015</dd>
+            </div>
+            <div class="facts__row">
+              <dt>Lokasi</dt>
+              <dd>Sukoharjo, Jawa Tengah</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Perjalanan"
+        title="Perjalanan Kami"
+        description="Tahap-tahap penting yang membentuk perusahaan hingga hari ini."
+      />
+      <ol class="timeline" role="list">
+        {
+          timeline.map((item) => (
+            <li class="timeline__item">
+              <span class="timeline__dot" aria-hidden="true" />
+              <span class="timeline__year">{item.year}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CbmIdentity />
+
+  <CtaBand
+    title="Mari Berkomunikasi"
+    description="Punya rencana produk herbal? Hubungi kami, tim kami siap menjawab pertanyaan Anda."
+    primaryLabel="Hubungi Kami"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Sertifikasi"
+    secondaryHref="/maklon/sertifikasi/"
+  />
+</BaseLayout>
+
+<style>
+  .split {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 62rem) {
+    .split {
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  .facts {
+    padding: 1.75rem;
+    background: var(--brand-50);
+    border: 1px solid var(--brand-100);
+    border-radius: var(--radius-lg);
+  }
+
+  .facts__title {
+    font-size: 1.0625rem;
+    margin-bottom: 1.125rem;
+  }
+
+  .facts dl {
+    margin: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .facts__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.625rem 0;
+    border-bottom: 1px dashed var(--brand-100);
+    font-size: 0.9375rem;
+  }
+
+  .facts__row:last-child {
+    border-bottom: none;
+  }
+
+  .facts__row dt {
+    color: var(--ink-3);
+  }
+
+  .facts__row dd {
+    margin: 0;
+    font-weight: 600;
+    color: var(--ink);
+    text-align: right;
+  }
+
+  .timeline {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .timeline__item {
+    position: relative;
+    padding: 0 0 2rem 2rem;
+    border-left: 2px solid var(--line-strong);
+  }
+
+  .timeline__item:last-child {
+    border-left-color: transparent;
+    padding-bottom: 0;
+  }
+
+  .timeline__dot {
+    position: absolute;
+    left: -0.4375rem;
+    top: 0.375rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-50);
+  }
+
+  .timeline__year {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--brand);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .timeline p {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .vm {
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fff;
+  }
+
+  .vm__tag {
+    display: inline-block;
+    padding: 0.3125rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--brand-50);
+    color: var(--brand-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .vm__text {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .vm__list {
+    display: grid;
+    gap: 0.625rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .vm__list li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+
+  .vm__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+
+  .vcard {
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .vcard h3 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .vcard p {
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+</style>

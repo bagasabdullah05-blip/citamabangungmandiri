@@ -1,0 +1,251 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/company';
+
+const categories = ['Semua', ...new Set(projects.map((p) => p.category))];
+---
+
+<BaseLayout
+  title="Portofolio"
+  description="Portofolio proyek konstruksi PT. Citra Bangun Mandiri: hunian, komersial, industri, renovasi, dan institusional."
+  section="profil"
+>
+  <PageHero
+    eyebrow="Portofolio"
+    title="Proyek yang Pernah Kami Kerjakan"
+    description="Pilihan pekerjaan yang menunjukkan cakupan dan pengalaman kami di berbagai jenis bangunan."
+    primaryLabel="Ajukan Penawaran"
+    primaryHref="/kontak/"
+    secondaryLabel="Layanan Konstruksi"
+    secondaryHref="/profil/layanan/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Daftar Proyek"
+        title="Semua Proyek"
+        description="Gunakan filter di bawah untuk melihat proyek berdasarkan jenisnya."
+      />
+
+      <div class="filters" data-filters role="group" aria-label="Filter proyek berdasarkan kategori">
+        {
+          categories.map((category, index) => (
+            <button
+              type="button"
+              class:list={['filter', { 'is-active': index === 0 }]}
+              data-filter={category}
+              aria-pressed={index === 0 ? 'true' : 'false'}
+            >
+              {category}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="grid grid--3" data-project-grid>
+        {
+          projects.map((project) => (
+            <article class="card card--hover project" data-category={project.category}>
+              <div class="project__top">
+                <span class="badge badge--slate">{project.category}</span>
+                <span
+                  class:list={[
+                    'badge',
+                    project.status === 'Selesai' ? 'badge' : 'badge badge--amber',
+                  ]}
+                >
+                  {project.status}
+                </span>
+              </div>
+              <h3>{project.title}</h3>
+              <p class="project__meta">
+                <Icon name="pin" size={15} /> {project.location}
+              </p>
+              <p class="project__meta">
+                <Icon name="ruler" size={15} /> {project.scope}
+              </p>
+              <p class="project__meta">
+                <Icon name="clock" size={15} /> {project.year}
+              </p>
+              <p class="project__desc">{project.description}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="empty" data-empty hidden>
+        Belum ada proyek pada kategori ini.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Cara Memilih"
+        title="Cara Kami Memastikan Hasil Baik"
+        description="Empat hal yang kami lakukan di setiap proyek, apa pun skala dan jenisnya."
+      />
+      <div class="grid grid--4">
+        <div class="mini">
+          <h3>Material Terpilih</h3>
+          <p>Kami gunakan material dari pemasok tepercaya agar kekuatan bangunan terjamin.</p>
+        </div>
+        <div class="mini">
+          <h3>Pengawasan Rutin</h3>
+          <p>Ada pengawas lapangan yang memastikan pengerjaan mengikuti gambar dan spesifikasi.</p>
+        </div>
+        <div class="mini">
+          <h3>Progres Terbuka</h3>
+          <p>Laporan berkala agar Anda mengetahui kondisi proyek tanpa perlu menanyakan.</p>
+        </div>
+        <div class="mini">
+          <h3>Pembersihan Lokasi</h3>
+          <p>Area kerja dibersihkan setelah selesai dan sisa material diangkut keluar lokasi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Proyek Berikutnya Bisa Milik Anda"
+    description="Ceritakan rencana Anda, kami buatkan estimasi dan jadwal pengerjaan."
+    primaryLabel="Hubungi Kami"
+    primaryHref="/kontak/"
+    secondaryLabel="Tentang Kami"
+    secondaryHref="/profil/tentang/"
+  />
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-full);
+    background: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition:
+      background var(--transition),
+      border-color var(--transition),
+      color var(--transition);
+  }
+
+  .filter:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .filter.is-active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+
+  .project__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4375rem;
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+    margin-bottom: 0.25rem;
+  }
+
+  .project__meta :global(svg) {
+    flex-shrink: 0;
+    color: var(--ink-4);
+  }
+
+  .project__desc {
+    margin-top: 0.875rem;
+    padding-top: 0.875rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--ink-3);
+    padding: 2rem 0;
+  }
+
+  .mini {
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .mini h3 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .mini p {
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+</style>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const projectGrid = document.querySelector<HTMLElement>('[data-project-grid]');
+  const emptyState = document.querySelector<HTMLElement>('[data-empty]');
+
+  if (filterButtons.length && projectGrid) {
+    const projects = Array.from(
+      projectGrid.querySelectorAll<HTMLElement>('[data-category]'),
+    );
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.filter ?? 'Semua';
+
+        filterButtons.forEach((other) => {
+          const active = other === button;
+          other.classList.toggle('is-active', active);
+          other.setAttribute('aria-pressed', String(active));
+        });
+
+        let visible = 0;
+        projects.forEach((project) => {
+          const show = category === 'Semua' || project.dataset.category === category;
+          project.hidden = !show;
+          if (show) visible += 1;
+        });
+
+        if (emptyState) emptyState.hidden = visible > 0;
+      });
+    });
+  }
+</script>

@@ -1,0 +1,219 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  points?: string[];
+  stats?: { value: string; label: string }[];
+  primaryExternal?: boolean;
+  secondaryExternal?: boolean;
+  note?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  points,
+  stats,
+  primaryExternal = false,
+  secondaryExternal = false,
+  note,
+} = Astro.props;
+
+const externalAttrs = (isExternal: boolean) =>
+  isExternal ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<section class="hero">
+  <div class="hero__bg" data-parallax="0.12" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__content" data-reveal>
+      {eyebrow && <p class="hero__badge">{eyebrow}</p>}
+      <h1 class="hero__title">{title}</h1>
+      {description && <p class="hero__lead">{description}</p>}
+
+      {
+        (primaryHref || secondaryHref) && (
+          <div class="hero__actions">
+            {primaryHref && primaryLabel && (
+              <a
+                href={primaryHref}
+                class="btn btn--light"
+                {...externalAttrs(primaryExternal)}
+              >
+                {primaryLabel}
+                <Icon name="arrow" size={18} />
+              </a>
+            )}
+            {secondaryHref && secondaryLabel && (
+              <a
+                href={secondaryHref}
+                class="btn btn--ghost-light"
+                {...externalAttrs(secondaryExternal)}
+              >
+                {secondaryLabel}
+              </a>
+            )}
+          </div>
+        )
+      }
+
+      {note && <p class="hero__note">{note}</p>}
+
+      {
+        points && (
+          <ul role="list" class="hero__points">
+            {points.map((point) => (
+              <li>
+                <Icon name="check" size={16} />
+                {point}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    {
+      stats && (
+        <div class="hero__stats" data-reveal style="--i: 1">
+          {stats.map((stat) => (
+            <div class="hero__stat">
+              <span class="hero__stat-value">{stat.value}</span>
+              <span class="hero__stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 55%, var(--accent) 100%);
+    color: #fff;
+    isolation: isolate;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.18;
+    background-image:
+      radial-gradient(circle at 18% 22%, #fff 0, transparent 42%),
+      radial-gradient(circle at 82% 78%, #fff 0, transparent 38%);
+  }
+
+  .hero__inner {
+    padding-block: clamp(3.5rem, 9vw, 7rem);
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  @media (min-width: 64rem) {
+    .hero__inner {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      align-items: center;
+    }
+  }
+
+  .hero__badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    background: rgb(255 255 255 / 0.16);
+    border: 1px solid rgb(255 255 255 / 0.28);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .hero__title {
+    margin-top: 1.25rem;
+    color: #fff;
+    max-width: 20ch;
+  }
+
+  .hero__lead {
+    margin-top: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: rgb(255 255 255 / 0.9);
+    max-width: 54ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .hero__note {
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  .hero__points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    font-size: 0.9375rem;
+    color: rgb(255 255 255 / 0.92);
+  }
+
+  .hero__points li {
+    display: flex;
+    align-items: center;
+    gap: 0.4375rem;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .hero__stat {
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.12);
+    border: 1px solid rgb(255 255 255 / 0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  .hero__stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .hero__stat-label {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8125rem;
+    color: rgb(255 255 255 / 0.85);
+  }
+</style>

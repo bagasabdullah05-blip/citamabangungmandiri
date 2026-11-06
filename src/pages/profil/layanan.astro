@@ -1,0 +1,297 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services } from '../../data/company';
+
+const construction = services.filter((service) => service.icon !== 'leaf');
+
+const scope = [
+  {
+    title: 'Rumah Tinggal dan Hunian',
+    items: [
+      'Rumah tunggal dan tipe rumah tumbuh',
+      'Kompleks hunian dan duplex',
+      'Ruko dan apartemen',
+      'Pagar, carport, dan taman',
+    ],
+  },
+  {
+    title: 'Komersial dan Perkantoran',
+    items: [
+      'Ruko dan deretan toko',
+      'Kantor dan ruang kerja',
+      'Restoran, kafe, dan hotel',
+      'Showroom dan gudang',
+    ],
+  },
+  {
+    title: 'Industri dan Fasilitas',
+    items: [
+      'Gudang dan logistik',
+      'Pabrik dan ruang produksi',
+      'Kantor proyek dan teknikal',
+      'Fasilitas publik',
+    ],
+  },
+  {
+    title: 'Renovasi dan Perbaikan',
+    items: [
+      'Perbaikan atap dan plafon',
+      'Perkuatan struktur',
+      'Peningkatan tampilan dan interior',
+      'Perbaikan kelistrikan dan perpipian',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Layanan Konstruksi"
+  description="Layanan konstruksi PT. Citra Bangun Mandiri: kontraktor umum, pengelolaan proyek, renovasi, dan pembangunan bangunan industri."
+  section="profil"
+>
+  <PageHero
+    eyebrow="Layanan Konstruksi"
+    title="Dari Fondasi hingga Serah Terima"
+    description="Kami menangani pembangunan dan renovasi dengan satu tim yang bertanggung jawab dari perencanaan sampai detik terakhir."
+    primaryLabel="Mulai Konsultasi"
+    primaryHref="/kontak/"
+    secondaryLabel="Hubungi Kami"
+    secondaryHref="/kontak/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Layanan Utama"
+        title="Apa Saja yang Bisa Kami Kerjakan"
+        description="Layanan utama yang mencakup kebutuhan proyek bangunan Anda."
+      />
+      <div class="grid grid--2">
+        {construction.map((service) => <ServiceCard {...service} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Cakupan Pekerjaan"
+        title="Jenis Bangunan yang Kami Kerjakan"
+        description="Pengalaman kami mencakup beragam bangunan, dari tempat tinggal sampai fasilitas industri."
+      />
+      <div class="grid grid--2">
+        {
+          scope.map((group) => (
+            <div class="scope">
+              <h3>{group.title}</h3>
+              <ul role="list">
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="prose">
+          <SectionHead
+            eyebrow="Cara Kerja"
+            title="Proses yang Tidak Ribet"
+            description="Kami menjaga alur kerja tetap sederhana agar Anda selalu tahu posisi proyek."
+          />
+          <ol class="steps">
+            <li>
+              <h3>Survei dan Konsultasi</h3>
+              <p>
+                Kami datang ke lokasi, memahami kebutuhan, dan mendiskusikan opsi yang
+                tersedia beserta estimasi biayanya.
+              </p>
+            </li>
+            <li>
+              <h3>Rencana Anggaran Biaya</h3>
+              <p>
+                Seluruh pekerjaan diuraikan per item agar Anda bisa melihat ke mana
+                anggaran pergi dan bagian mana yang bisa diatur.
+              </p>
+            </li>
+            <li>
+              <h3>Kontrak dan Penjadwalan</h3>
+              <p>
+                Setelah anggaran disepakati, kami susun jadwal kerja dan disepakati
+                bersama tentang waktu mulai serta target penyelesaian.
+              </p>
+            </li>
+            <li>
+              <h3>Pelaksanaan di Lapangan</h3>
+              <p>
+                Pekerjaan berjalan dengan pengawas lapangan dan laporan progres
+                berkala agar Anda terpantau dari jauh.
+              </p>
+            </li>
+            <li>
+              <h3>Serah Terima</h3>
+              <p>
+                Setelah selesai, kami melakukan pemeriksaan bersama, perbaikan bila ada,
+                lalu penyerahan kunci atau dokumen.
+              </p>
+            </li>
+          </ol>
+        </div>
+        <aside class="note">
+          <h3 class="note__title">Pertanyaan Umum</h3>
+          <div class="note__list">
+            <p>Apakah bisa dikerjakan bertahap?</p>
+            <p>Berapa lama pengerjaan rumah tinggal tipe normal?</p>
+            <p>Apakah material bisa dibeli sendiri?</p>
+          </div>
+          <a href="/kontak/" class="btn btn--primary btn--block btn--sm">
+            Tanya Langsung
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Siap Memulai Proyek?"
+    description="Konsultasi awal gratis. Kami bantu estimasi anggaran dan menentukan langkah pertama."
+    primaryLabel="Ajukan Penawaran"
+    primaryHref="/kontak/"
+    secondaryLabel="Tentang Kami"
+    secondaryHref="/profil/tentang/"
+  />
+</BaseLayout>
+
+<style>
+  .scope {
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .scope h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .scope ul {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .scope li {
+    position: relative;
+    padding-left: 1.375rem;
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+
+  .scope li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5625rem;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+
+  .split {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 62rem) {
+    .split {
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  .steps {
+    counter-reset: step;
+    display: grid;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .steps li {
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+    display: grid;
+    place-items: center;
+    width: 2.125rem;
+    height: 2.125rem;
+    border-radius: 50%;
+    background: var(--brand-50);
+    color: var(--brand-dark);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  .steps h3 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .steps p {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .note {
+    padding: 1.75rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .note__title {
+    font-size: 1.0625rem;
+    margin-bottom: 1rem;
+  }
+
+  .note__list {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .note__list p {
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+</style>

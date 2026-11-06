@@ -1,0 +1,380 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { processSteps } from '../../data/herbal-process';
+import { herbalCertificates } from '../../data/herbal-certificates';
+import { faqs } from '../../data/herbal-faq';
+---
+
+<BaseLayout
+  title="Proses Produksi"
+  description="Tahapan produksi produk herbal di PT. Citra Bangun Mandiri: konsultasi, formulasi, desain kemasan, persetujuan, produksi, dan pengiriman."
+  section="maklon"
+>
+  <PageHero
+    eyebrow="Proses Produksi"
+    title="Enam Tahap dari Ide sampai Pengiriman"
+    description="Setiap tahap punya output yang jelas sehingga Anda selalu tahu posisi pekerjaan dan apa yang perlu Anda putuskan."
+    primaryLabel="Mulai Konsultasi"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Produk"
+    secondaryHref="/maklon/produk/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="flow">
+        {
+          processSteps.map((step) => (
+            <article class="step">
+              <div class="step__top">
+                <span class="step__num">{step.step}</span>
+                <span class="step__time">
+                  <Icon name="clock" size={14} />
+                  {step.duration}
+                </span>
+              </div>
+              <h2>{step.title}</h2>
+              <p class="step__desc">{step.description}</p>
+              <div class="step__out">
+                <span>Output</span>
+                <ul role="list">
+                  {step.deliverables.map((item) => (
+                    <li>
+                      <Icon name="check" size={14} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Pengawasan Mutu"
+        title="Pemeriksaan yang Kami Lakukan"
+        description="Setiap batch produksi melewati beberapa pemeriksaan sebelum dikirim."
+      />
+      <div class="grid grid--3">
+        <div class="qc">
+          <span class="qc__icon">
+            <Icon name="flask" size={20} />
+          </span>
+          <h3>Pemeriksaan Bahan</h3>
+          <p>
+            Bahan yang masuk diperiksa kondisi, tanggal produksi, dan kesesuaian dengan
+            spesifikasi sebelum dipakai.
+          </p>
+        </div>
+        <div class="qc">
+          <span class="qc__icon">
+            <Icon name="shield" size={20} />
+          </span>
+          <h3>Pemeriksaan Proses</h3>
+          <p>
+            Parameter produksi seperti suhu, waktu, dan urutan pencampuran dicatat pada
+            setiap batch.
+          </p>
+        </div>
+        <div class="qc">
+          <span class="qc__icon">
+            <Icon name="target" size={20} />
+          </span>
+          <h3>Pemeriksaan Hasil</h3>
+          <p>
+            Produk akhir diperiksa dari fisik, kadar bahan aktif, hingga kesesuaian
+            kemasan dan label.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Perizinan Produk"
+        title="Status Sertifikasi"
+        description="Status perizinan produk herbal yang sedang dan akan kami selesaikan."
+      />
+      <div class="grid grid--4">
+        {
+          herbalCertificates.map((cert) => (
+            <div class="cert">
+              <div class="cert__head">
+                <h3>{cert.name}</h3>
+                <span
+                  class:list={[
+                    'badge',
+                    cert.status === 'Aktif'
+                      ? 'badge'
+                      : cert.status === 'Proses'
+                        ? 'badge badge--amber'
+                        : 'badge badge--slate',
+                  ]}
+                >
+                  {cert.status}
+                </span>
+              </div>
+              <p class="cert__desc">{cert.description}</p>
+              <p class="cert__detail">{cert.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHead
+        align="center"
+        eyebrow="Pertanyaan Umum"
+        title="Yang Sering Ditanyakan Klien"
+        description="Jika pertanyaan Anda belum ada di sini, silakan hubungi kami langsung."
+      />
+      <div class="faqs">
+        {
+          faqs.map((faq) => (
+            <details class="faq">
+              <summary>
+                <span>{faq.q}</span>
+                <Icon name="chevron" size={18} class="faq__icon" />
+              </summary>
+              <p>{faq.a}</p>
+            </details>
+          ))
+        }
+      </div>
+      <div class="text-center" style="margin-top: 2.5rem">
+        <a href="/kontak/" class="btn btn--secondary">Tanya Pertanyaan Lain</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Punya Kebutuhan Produk Herbal?"
+    description="Ceritakan jenis produk yang Anda inginkan. Tim kami akan membantu estimasi spesifikasi dan biaya produksi."
+    primaryLabel="Ajukan Konsultasi"
+    primaryHref="/kontak/"
+    secondaryLabel="Lihat Sertifikasi"
+    secondaryHref="/maklon/sertifikasi/"
+  />
+</BaseLayout>
+
+<style>
+  .flow {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .step {
+    position: relative;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  @media (min-width: 60rem) {
+    .step {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+  }
+
+  .step__top {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .step__num {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    flex-shrink: 0;
+  }
+
+  .step__time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.3125rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-muted);
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+  }
+
+  .step h2 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .step__desc {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .step__out {
+    padding: 1.125rem 1.25rem;
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+  }
+
+  .step__out > span {
+    display: block;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 0.625rem;
+  }
+
+  .step__out ul {
+    display: grid;
+    gap: 0.4375rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .step__out li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+
+  .step__out :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--brand);
+  }
+
+  .qc {
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .qc__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius);
+    background: var(--brand-50);
+    color: var(--brand);
+    margin-bottom: 1rem;
+  }
+
+  .qc h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .qc p {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+
+  .cert {
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .cert__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cert__head h3 {
+    font-size: 1.0625rem;
+  }
+
+  .cert__desc {
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    margin-bottom: 0.5rem;
+  }
+
+  .cert__detail {
+    font-size: 0.8125rem;
+    color: var(--ink-4);
+  }
+
+  .faqs {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .faq {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--ink);
+    list-style: none;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__icon {
+    flex-shrink: 0;
+    color: var(--brand);
+    transition: transform var(--transition);
+  }
+
+  .faq[open] .faq__icon {
+    transform: rotate(90deg);
+  }
+
+  .faq p {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  description?: string;
+  points?: string[];
+}
+
+const { icon, title, description, points } = Astro.props;
+---
+
+<article class="card card--hover" data-reveal>
+  <div class="card__icon">
+    <Icon name={icon} />
+  </div>
+  <h3>{title}</h3>
+  {description && <p>{description}</p>}
+  {
+    points && (
+      <ul role="list" class="card__points">
+        {points.map((point) => (
+          <li>
+            <Icon name="check" size={16} />
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .card__points {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1.125rem 0 0;
+    padding: 1.125rem 0 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .card__points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+
+  .card__points :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--brand);
+  }
+</style>
